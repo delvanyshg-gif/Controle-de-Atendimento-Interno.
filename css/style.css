@@ -1,4 +1,511 @@
+
 .topo {
-    background-color: black;
     display: flex;
+    justify-content: center;
+}
+
+h1{
+    display: flex;
+    width: 300px;
+    font-size: 50px;
+    margin-left: 50px;
+}
+
+.menu{ display :flex;
+    align-items: center;
+}
+
+
+
+
+
+
+/* =====================================================
+   CONFIGURAÇÕES GERAIS
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f7fb;
+    color: #1f2937;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+}
+
+
+/* =====================================================
+   LADO ESQUERDO
+===================================================== */
+
+.login-aside {
+    width: 45%;
+    min-height: 100vh;
+    background: linear-gradient(145deg, #0f4c81, #1769aa);
+    color: white;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.brand strong {
+    color: #58c7ff;
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background-color: white;
+    color: #0f4c81;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.aside-content {
+    max-width: 520px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.eyebrow {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+    opacity: 0.85;
+}
+
+.aside-content h1 {
+    font-size: 48px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.aside-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    opacity: 0.92;
+}
+
+.aside-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.info-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #58c7ff;
+    color: #0f4c81;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.aside-info strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.aside-info small {
+    display: block;
+    line-height: 1.5;
+    opacity: 0.85;
+}
+
+
+/* =====================================================
+   ÁREA PRINCIPAL
+===================================================== */
+
+.login-main {
+    width: 55%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: #f7f9fc;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 470px;
+    background-color: white;
+    padding: 45px;
+    border-radius: 18px;
+    box-shadow: 0 15px 45px rgba(15, 76, 129, 0.12);
+}
+
+.login-header {
+    margin-bottom: 35px;
+}
+
+.login-header h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #111827;
+}
+
+.login-header p:last-child {
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   FORMULÁRIO
+===================================================== */
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.field label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #374151;
+}
+
+.field input {
+    width: 100%;
+    height: 50px;
+    padding: 0 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+    outline: none;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.field input:focus {
+    border-color: #1769aa;
+    box-shadow: 0 0 0 3px rgba(23, 105, 170, 0.12);
+}
+
+
+/* =====================================================
+   SENHA
+===================================================== */
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 50px;
+}
+
+.show-password {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   OPÇÕES
+===================================================== */
+
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #4b5563;
+}
+
+.remember input {
+    accent-color: #1769aa;
+}
+
+.login-link {
+    color: #1769aa;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+
+/* =====================================================
+   BOTÃO
+===================================================== */
+
+.login-button {
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 9px;
+    background-color: #1769aa;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    transition: 0.2s;
+}
+
+.login-button:hover {
+    background-color: #0f4c81;
+    transform: translateY(-1px);
+}
+
+.login-button span {
+    font-size: 20px;
+}
+
+
+/* =====================================================
+   MENSAGEM
+===================================================== */
+
+.form-message {
+    text-align: center;
+    font-size: 14px;
+    color: #1769aa;
+    min-height: 18px;
+}
+
+
+/* =====================================================
+   SOLICITAÇÃO DE ACESSO
+===================================================== */
+
+.register-area {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+.register-area p {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.register-link {
+    color: #1769aa;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   MENU / INDEX
+===================================================== */
+
+.topo {
+    min-height: 70px;
+    padding: 0 40px;
+    background-color: #0f4c81;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: white;
+}
+
+.topo h1 {
+    width: auto;
+    font-size: 30px;
+    margin-left: 0;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.menu a {
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+.menu a:hover,
+.menu .selecionado {
+    opacity: 1;
+    color: #58c7ff;
+}
+
+
+
+.conteudo {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 30px;
+}
+
+.secao-principal h2 {
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.painel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.cartao {
+    background-color: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.numero {
+    font-size: 36px;
+    font-weight: bold;
+    color: #1769aa;
+}
+
+.descricao {
+    color: #6b7280;
+}
+
+
+
+.rodape {
+    padding: 25px;
+    text-align: center;
+    color: #6b7280;
+}
+
+
+
+
+@media (max-width: 900px) {
+
+    .login-page {
+        flex-direction: column;
+    }
+
+    .login-aside,
+    .login-main {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .login-aside {
+        padding: 35px;
+    }
+
+    .aside-content h1 {
+        font-size: 38px;
+    }
+
+    .login-main {
+        padding: 30px 20px;
+    }
+
+    .painel {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .login-box {
+        padding: 30px 22px;
+    }
+
+    .login-aside {
+        padding: 30px 25px;
+    }
+
+    .login-header h1 {
+        font-size: 27px;
+    }
+
+    .aside-content h1 {
+        font-size: 32px;
+    }
+
+    .topo {
+        padding: 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .menu {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
