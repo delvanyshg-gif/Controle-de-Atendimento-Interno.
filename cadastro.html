@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Criar conta | Atende+</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <main class="login-main">
+
+        <div class="login-box">
+
+            <header class="login-header">
+
+                <p class="eyebrow">
+                    ATENDE+
+                </p>
+
+                <h1>
+                    Criar sua conta
+                </h1>
+
+                <p>
+                    Cadastre seus dados para acessar o sistema.
+                </p>
+
+            </header>
+
+
+            <form id="register-form" class="login-form">
+
+                <div class="field">
+
+                    <label for="name">
+                        Nome
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Seu nome"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="voce@empresa.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="password">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Crie uma senha"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="confirm-password">
+                        Confirmar senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirm-password"
+                        placeholder="Digite a senha novamente"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    Criar conta
+                    <span>→</span>
+                </button>
+
+
+                <p
+                    id="register-message"
+                    class="form-message"
+                ></p>
+
+            </form>
+
+
+            <div class="register-area">
+
+                <p>
+                    Já possui uma conta?
+                </p>
+
+                <a
+                    href="login.html"
+                    class="register-link"
+                >
+                    Voltar para o login
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="js/db.js"></script>
+    <script src="js/cadastro.js"></script>
+
+</body>
+
+</html>
