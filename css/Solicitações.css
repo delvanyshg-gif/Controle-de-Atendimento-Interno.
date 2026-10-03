@@ -1,0 +1,144 @@
+/*style exclusive para gitSOLICITAÇÕES*/
+
+.solicitacoes-body {
+  background-color: #f4f6f9;
+  color: #333333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.solicitacoes-header {
+  background-color: #1e293b;
+  color: #ffffff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.solicitacoes-header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.solicitacoes-nav a {
+  color: #cbd5e1;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.solicitacoes-nav a:hover {
+  color: #38bdf8;
+}
+
+.solicitacoes-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.solicitacoes-card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.solicitacoes-card h2 {
+  color: #0f172a;
+  margin-bottom: 1.2rem;
+  font-size: 1.3rem;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+}
+
+.solicitacoes-campo {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.solicitacoes-campo label {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #475569;
+  font-size: 0.9rem;
+}
+
+.solicitacoes-campo input,
+.solicitacoes-campo textarea {
+  padding: 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.solicitacoes-campo textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.btn-solicitacao {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-solicitacao:hover {
+  background-color: #1d4ed8;
+}
+
+.tabela-solicitacoes {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.tabela-solicitacoes th, 
+.tabela-solicitacoes td {
+  padding: 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tabela-solicitacoes th {
+  background-color: #f8fafc;
+  color: #475569;
+  font-weight: 600;
+}
+
+.status-tag {
+  background-color: #fef3c7;
+  color: #92400e;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.btn-excluir {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.btn-excluir:hover {
+  background-color: #dc2626;
+}
