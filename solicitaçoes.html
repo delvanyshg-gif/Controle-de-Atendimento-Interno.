@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle de Atendimento - Solicitações</title>
+ 
+  <link rel="stylesheet" href="css/Solicitações.css"> 
+</head>
+<body class="solicitacoes-body">
+
+  <header class="solicitacoes-header">
+    <h1>Controle de Atendimento Interno</h1>
+    <nav class="solicitacoes-nav">
+      <a href="index.html">Início</a>
+      <a href="Solicitações.html">Solicitações</a>
+      <a href="login.html">Sair</a>
+    </nav>
+  </header>
+
+  <main class="solicitacoes-container">
+    
+    <section class="solicitacoes-card">
+      <h2>Nova Solicitação</h2>
+      <form id="formSolicitacao">
+        <div class="solicitacoes-campo">
+          <label for="titulo">Título *</label>
+          <input type="text" id="titulo" required placeholder="Ex: Manutenção no Computador">
+        </div>
+
+        <div class="solicitacoes-campo">
+          <label for="descricao">Descrição *</label>
+          <textarea id="descricao" required placeholder="Detalhe a sua solicitação..."></textarea>
+        </div>
+
+        <div class="solicitacoes-campo">
+          <label for="data">Data *</label>
+          <input type="date" id="data" required>
+        </div>
+
+        <button type="submit" class="btn-solicitacao">Enviar</button>
+      </form>
+    </section>
+
+    <!-- SEÇÃO 2: LISTA DE SOLICITAÇÕES (Item 5) -->
+    <section class="solicitacoes-card">
+      <h2>Solicitações Cadastradas</h2>
+      <table class="tabela-solicitacoes">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaCorpo">
+          <!-- Os itens adicionados pelo formulário aparecerão aqui -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- Importa o script JavaScript que controla a lógica -->
+  <script src="js/solicitacoes.js"></script>
+</body>
+</html>
