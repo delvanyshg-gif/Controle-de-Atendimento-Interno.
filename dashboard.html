@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Solicitações</title>
+    <!-- Tailwind CSS para Estilização -->
+    <script src="https://tailwindcss.com"></script>
+    <!-- Chart.js para o Gráfico de Barras -->
+    <script src="https://jsdelivr.net"></script>
+</head>
+<body class="bg-slate-50 font-sans antialiased text-gray-800 p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto space-y-6">
+        
+        <!-- Cabeçalho Principal -->
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+            <div>
+                <p class="text-xs text-blue-600 font-medium">Início &gt; Dashboard</p>
+                <h1 class="text-2xl font-bold text-slate-900 mt-1">Dashboard de solicitações</h1>
+                <p class="text-sm text-gray-500">Acompanhe a distribuição e a situação das solicitações em um só lugar.</p>
+            </div>
+            <button class="bg-[#004A8F] hover:bg-blue-900 text-white text-sm font-medium px-4 py-2 rounded-lg shadow transition">
+                Nova solicitação +
+            </button>
+        </div>
+
+        <!-- Alerta de Dados de Demonstração -->
+        <div class="bg-gray-100/80 border border-gray-200 rounded-lg p-3 flex items-center space-x-2 text-xs text-gray-500">
+            <span class="font-bold tracking-wider uppercase bg-white border px-1.5 py-0.5 rounded text-gray-600">Dados de demonstração</span>
+            <span>Números e registros fictícios, apenas para ilustrar o acompanhamento.</span>
+        </div>
+
+        <!-- Filtros Rápidos -->
+        <div class="flex flex-wrap items-center justify-between gap-3 bg-white p-3 rounded-xl border border-gray-200 shadow-sm text-sm">
+            <div class="flex flex-wrap items-center gap-2">
+                <select class="bg-gray-50 border border-gray-300 text-gray-700 py-1.5 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option>01 a 30 set. 2026</option>
+                </select>
+                <select class="bg-gray-50 border border-gray-300 text-gray-700 py-1.5 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option>Todas as unidades</option>
+                </select>
+                <select class="bg-gray-50 border border-gray-300 text-gray-700 py-1.5 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option>Todos os status</option>
+                </select>
+            </div>
+            <span class="text-xs text-gray-400 font-medium">120 solicitações no período ilustrativo</span>
+        </div>
+
+        <!-- Cards de KPI -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Em Aberto -->
+            <div class="bg-white p-6 rounded-xl border-t-4 border-[#D946EF] border-x border-b border-gray-200 shadow-sm relative overflow-hidden">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center space-x-2 text-sm font-semibold text-slate-700">
+                            <span class="w-2 h-2 rounded-full bg-[#D946EF]"></span>
+                            <span>Solicitações em aberto</span>
+                        </div>
+                        <p class="text-4xl font-extrabold text-slate-950 mt-2">24 <span class="text-xs font-normal text-gray-400 ml-1">20% do total ilustrativo</span></p>
+                        <p class="text-xs text-gray-400 mt-2">Aguardando análise inicial</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Em Andamento -->
+            <div class="bg-white p-6 rounded-xl border-t-4 border-[#EAB308] border-x border-b border-gray-200 shadow-sm relative overflow-hidden">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center space-x-2 text-sm font-semibold text-slate-700">
+                            <span class="w-2 h-2 rounded-full bg-[#EAB308]"></span>
+                            <span>Solicitações em andamento</span>
+                        </div>
+                        <p class="text-4xl font-extrabold text-slate-950 mt-2">36 <span class="text-xs font-normal text-gray-400 ml-1">30% do total ilustrativo</span></p>
+                        <p class="text-xs text-gray-400 mt-2">Em análise ou execução</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Atendidas -->
+            <div class="bg-white p-6 rounded-xl border-t-4 border-[#14B8A6] border-x border-b border-gray-200 shadow-sm relative overflow-hidden">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center space-x-2 text-sm font-semibold text-slate-700">
+                            <span class="w-2 h-2 rounded-full bg-[#14B8A6]"></span>
+                            <span>Solicitações atendidas</span>
+                        </div>
+                        <p class="text-4xl font-extrabold text-slate-950 mt-2">60 <span class="text-xs font-normal text-gray-400 ml-1">50% do total ilustrativo</span></p>
+                        <p class="text-xs text-gray-400 mt-2">Atendimento concluído</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção do Gráfico e Explicação -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+            <!-- Gráfico Comercial -->
+            <div class="lg:col-span-2 space-y-4">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-950">Distribuição por status</h2>
+                    <p class="text-xs text-gray-400">Área dos retângulos proporcional à quantidade de solicitações.</p>
+                </div>
+                <!-- Canvas para o gráfico Chart.js -->
+                <div class="relative h-64 w-full">
+                    <canvas id="statusChart"></canvas>
+                </div>
+                <p class="text-[10px] text-gray-400 italic">Base fictícia: Setembro de 2026 - Percentuais calculados sobre 120 registros de demonstração.</p>
+            </div>
+
+            <!-- Legenda Lateral / Entenda os Status -->
+            <div class="border-t lg:border-t-0 lg:border-l border-gray-100 pt-6 lg:pt-0 lg:pl-6 space-y-6">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-950">Entenda os status</h2>
+                </div>
+                
+                <div class="space-y-4 text-xs">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="font-bold text-slate-800 flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-[#D946EF]"></span> Em aberto
+                            </p>
+                            <p class="text-gray-400 mt-0.5">Registradas e aguardando o início da análise.</p>
+                        </div>
+                        <span class="font-bold text-slate-700">20%</span>
+                    </div>
+
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="font-bold text-slate-800 flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-[#EAB308]"></span> Em andamento
+                            </p>
+                            <p class="text-gray-400 mt-0.5">Já estão sendo analisadas ou executadas.</p>
+                        </div>
+                        <span class="font-bold text-slate-700">30%</span>
+                    </div>
+
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="font-bold text-slate-800 flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-[#14B8A6]"></span> Atendidas
+                            </p>
+                            <p class="text-gray-400 mt-0.5">Concluídas com o atendimento registrado.</p>
+                        </div>
+                        <span class="font-bold text-slate-700">50%</span>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-gray-100">
+                    <p class="text-sm font-bold text-slate-900">60 solicitações pendentes</p>
+                    <p class="text-xs text-gray-400 mt-0.5">Em aberto + em andamento, na base fictícia.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabela de Solicitações Recentes -->
+        <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+            <div class="p-6 flex justify-between items-center border-b border-gray-100">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-950">Solicitações recentes</h2>
+                    <p class="text-xs text-gray-400">Exemplos fictícios de registros no período selecionado.</p>
+                </div>
+                <a href="#" class="text-xs font-bold text-blue-600 hover:underline flex items-center gap-1">
+                    Ver lista de solicitações &rarr;
+                </a>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="bg-slate-50 border-b border-gray-100 text-gray-500 font-semibold uppercase tracking-wider">
+                            <th class="p-4">Protocolo</th>
+                            <th class="p-4">Solicitação</th>
+                            <th class="p-4">Unidade responsável</th>
+                            <th class="p-4">Data de abertura</th>
