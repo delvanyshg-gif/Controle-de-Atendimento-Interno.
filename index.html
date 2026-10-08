@@ -1,67 +1,217 @@
-.<!DOCTYPE html>
-
+<!DOCTYPE html>
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>controle de atendimento</title>
-      <meta http-equiv="refresh" content="0; url=login.html">
+    <meta name="description"
+        content="Acesse o sistema de Controle de Atendimento Interno Atende+.">
+
+    <title>Entrar | Atende+</title>
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
     
-    <header class="topo">
-        <h1>Menu</h1>
+    <div class="login-page">
 
         
-        <nav class="menu">
-            <a href="#inicio" class="selecionado">Início</a>
-            <a href="#projetos">Projetos</a>
-            <a href="#contato">Contato</a>
-        </nav>
-    </header>
-
-
-    
-    <main class="conteudo">
-
-        
-        <section class="secao-principal">
-
-            <h2>Visão Geral</h2>
+        <aside class="login-aside">
 
             
-            <div class="painel">
+            <a class="brand" href="index.html">
+                <span class="brand-icon">+</span>
+                <span>Atende<strong>+</strong></span>
+            </a>
 
-                <div class="cartao">
-                    <span class="numero">10</span>
-                    <span class="descricao">Projetos</span>
-                </div>
+            
+            <div class="aside-content">
 
-                <div class="cartao">
-                    <span class="numero">7</span>
-                    <span class="descricao">Em andamento</span>
-                </div>
+                <p class="eyebrow">
+                    CONTROLE DE ATENDIMENTO INTERNO
+                </p>
 
-                <div class="cartao">
-                    <span class="numero">3</span>
-                    <span class="descricao">Concluídos</span>
+                <h1>
+                    Atendimento organizado em um só lugar.
+                </h1>
+
+                <p>
+                    Registre chamados, acompanhe solicitações
+                    e facilite o atendimento entre os setores da empresa.
+                </p>
+
+            </div>
+
+            
+            <div class="aside-info">
+
+                <span class="info-icon">✓</span>
+
+                <div>
+                    <strong>Mais organização.</strong>
+
+                    <small>
+                        Acompanhe seus chamados e solicitações
+                        de forma simples e rápida.
+                    </small>
                 </div>
 
             </div>
 
-        </section>
+        </aside>
 
-    </main>
+
+        
+        <main class="login-main">
+
+            <div class="login-box">
+
+                
+                <header class="login-header">
+
+                    <p class="eyebrow">
+                        BEM-VINDO AO ATENDE+
+                    </p>
+
+                    <h1>
+                        Acesse sua conta
+                    </h1>
+
+                    <p>
+                        Entre para acompanhar e gerenciar seus atendimentos.
+                    </p>
+
+                </header>
+
+
+                
+                <form class="login-form" id="login-form">
+    
+                    
+                    <div class="field">
+
+                        <label for="email">
+                            E-mail corporativo
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="voce@empresa.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    
+                    <div class="field">
+
+                        <label for="password">
+                            Senha
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Digite sua senha"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="show-password"
+                                id="show-password"
+                                aria-label="Mostrar senha"
+                            >
+                                👁
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    
+                    <div class="login-options">
+
+                        <label class="remember">
+
+                            <input
+                                type="checkbox"
+                                id="remember"
+                                name="remember"
+                            >
+
+                            <span>
+                                Lembrar de mim
+                            </span>
+
+                        </label>
+
+
+                        <a href="#" class="login-link">
+                            Esqueci minha senha
+                        </a>
+
+                    </div>
+
+
+                    
+                    <button
+                        type="submit"
+                        class="login-button"
+                    >
+                        Entrar
+                        <span>→</span>
+                    </button>
+
+
+                    
+                    <p
+                        class="form-message"
+                        id="form-message"
+                        aria-live="polite"
+                    ></p>
+
+                </form>
+
+
+                
+                <div class="register-area">
+
+                    <p>
+                        Ainda não possui acesso?
+                    </p>
+
+                    <a
+                        href="cadastro.html"
+                        class="register-link"
+                    >
+                        Solicitar acesso
+                    </a>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
 
 
     
-    <footer class="rodape">
-        <p>senai Projeto © 2026</p>
-    </footer>
+    <script src="js/db.js"></script>
+    <script src="js/login.js"></script>
 
 </body>
 
