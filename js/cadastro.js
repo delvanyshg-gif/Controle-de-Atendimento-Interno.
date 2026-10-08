@@ -73,7 +73,7 @@ form.addEventListener("submit", (event) => {
 
     setTimeout(() => {
 
-        window.location.href = "login.html";
+        window.location.href = "menu.html";git status
 
     }, 1000);
 
