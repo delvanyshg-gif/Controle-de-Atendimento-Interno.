@@ -12,9 +12,9 @@
   <header class="solicitacoes-header">
     <h1>Controle de Atendimento Interno</h1>
     <nav class="solicitacoes-nav">
-      <a href="menu.html">Início</a>
+      <a href="menu.html">menu</a>
       <a href="Solicitações.html">Solicitações</a>
-      <a href="login.html">gigiSair</a>
+      <a href="#" id="btnSair">Sair</a>
     </nav>
   </header>
 
@@ -62,6 +62,15 @@
   </main>
 
   <!-- Importa o script JavaScript que controla a lógica -->
-  <script src="js/solicitacoes.js"></script>
+  <script>
+  document.getElementById("btnSair").addEventListener("click", function (event) {
+    event.preventDefault();
+
+    localStorage.removeItem("usuarioLogado");
+    sessionStorage.removeItem("usuarioLogado");
+
+    window.location.href = "login.html";
+  });
+</script>
 </body>
 </html>
