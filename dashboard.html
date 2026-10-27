@@ -3,22 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard de Solicitações</title>
-    <!-- Tailwind CSS para Estilização -->
-    <script src="https://tailwindcss.com"></script>
-    <!-- Chart.js para o Gráfico de Barras -->
-    <script src="https://jsdelivr.net"></script>
 
-   <link rel="stylesheet" href="css/style.css">
+    <title>Dashboard de Solicitações | Atende+</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Estilo geral do site -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Estilo exclusivo do dashboard -->
+    <link rel="stylesheet" href="css/dash.css">
 </head>
-<body class="bg-slate-50 font-sans antialiased text-gray-800 p-4 md:p-8">
+
+<body class="dashboard-page">
+
+    <!-- Menu principal -->
+    <header class="topo">
+        <h1>Menu</h1>
+
+        <nav class="menu">
+            <a href="index.html">Início</a>
+            <a href="dashboard.html" class="selecionado">dashboard</a>
+            <a href="index.html#projetos">Projetos</a>
+            <a href="index.html#contato">Contato</a>
+            <a href="solicitacoes.html">solicitações</a>
+            <a href="#" id="btnSair">Sair</a>
+        </nav>
+    </header>
+
+    <!-- Conteúdo do dashboard -->
+    <main class="max-w-7xl mx-auto space-y-6">
+
+        <!-- Mantenha aqui o conteúdo atual do dashboard:
+             título, filtros, cartões, gráfico e tabela. -->
+
+    </main>
+
 
     <div class="max-w-7xl mx-auto space-y-6">
         
         <!-- Cabeçalho Principal -->
         <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
             <div>
-                <p class="text-xs text-blue-600 font-medium">Início &gt; Dashboard</p>
                 <h1 class="text-2xl font-bold text-slate-900 mt-1">Dashboard de solicitações</h1>
                 <p class="text-sm text-gray-500">Acompanhe a distribuição e a situação das solicitações em um só lugar.</p>
             </div>
