@@ -51,7 +51,7 @@ form.addEventListener("submit", (event) => {
 
     // Ir para o sistema
     setTimeout(() => {
-        window.location.href = "solicitacoes.html";
+        window.location.href = "menu.html";
     }, 700);
 
 });
