@@ -508,5 +508,323 @@ a {
         flex-wrap: wrap;
         justify-content: center;
     }
+
+/* ========================================
+   DASHBOARD DE SOLICITAÇÕES
+   Estilo personalizado
+======================================== */
+
+/* Variáveis de cores */
+:root {
+    --azul-principal: #004A8F;
+    --azul-hover: #003568;
+    --azul-claro: #EAF3FC;
+    --fundo: #F5F7FB;
+    --branco: #FFFFFF;
+    --texto: #1E293B;
+    --texto-secundario: #64748B;
+    --borda: #E2E8F0;
+    --roxo: #D946EF;
+    --amarelo: #EAB308;
+    --verde: #14B8A6;
+    --sombra: 0 4px 15px rgba(15, 23, 42, 0.05);
+}
+
+/* Configurações gerais */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background-color: var(--fundo);
+    color: var(--texto);
+    font-family: "Segoe UI", Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Área principal */
+.max-w-7xl {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+/* Títulos */
+h1, h2, h3 {
+    color: #0F172A;
+    letter-spacing: -0.4px;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 750;
+}
+
+h2 {
+    font-size: 19px;
+    font-weight: 700;
+}
+
+/* Botões */
+button {
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color 0.2s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+button.bg-\[\#004A8F\] {
+    background-color: var(--azul-principal);
+    border: none;
+    border-radius: 9px;
+    padding: 11px 18px;
+    font-weight: 600;
+    box-shadow: 0 3px 8px rgba(0, 74, 143, 0.15);
+}
+
+button.bg-\[\#004A8F\]:hover {
+    background-color: var(--azul-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 12px rgba(0, 74, 143, 0.2);
+}
+
+button:focus-visible,
+select:focus-visible,
+a:focus-visible {
+    outline: 3px solid #93C5FD;
+    outline-offset: 3px;
+}
+
+/* Filtros */
+select {
+    font-family: inherit;
+    font-size: 13px;
+    min-height: 38px;
+    cursor: pointer;
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+select:hover {
+    border-color: #94A3B8;
+}
+
+select:focus {
+    border-color: var(--azul-principal);
+    box-shadow: 0 0 0 3px rgba(0, 74, 143, 0.1);
+}
+
+/* Cards e painéis */
+.bg-white {
+    background-color: var(--branco);
+}
+
+.rounded-xl {
+    border-radius: 14px;
+}
+
+.rounded-lg {
+    border-radius: 9px;
+}
+
+.shadow-sm {
+    box-shadow: var(--sombra);
+}
+
+.border-gray-200 {
+    border-color: var(--borda);
+}
+
+/* Indicadores */
+.grid.grid-cols-1.md\:grid-cols-3 > div {
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.grid.grid-cols-1.md\:grid-cols-3 > div:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.text-4xl {
+    font-size: 36px;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+/* Aviso de dados de demonstração */
+.bg-gray-100\/80 {
+    background-color: #F1F5F9;
+    border-color: #E2E8F0;
+}
+
+/* Gráfico */
+#statusChart {
+    max-width: 100%;
+}
+
+/* Links */
+a {
+    color: var(--azul-principal);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--azul-hover);
+}
+
+/* Tabela de solicitações */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #F8FAFC;
+}
+
+thead th {
+    color: #64748B;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    white-space: nowrap;
+}
+
+th, td {
+    padding: 15px 16px;
+    border-bottom: 1px solid #F1F5F9;
+    vertical-align: middle;
+}
+
+tbody tr {
+    background-color: #FFFFFF;
+    transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+    background-color: #F8FAFC;
+}
+
+tbody td {
+    color: #475569;
+    font-size: 13px;
+}
+
+/* Rolagem horizontal em telas pequenas */
+.overflow-x-auto {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Textos secundários */
+.text-gray-400 {
+    color: var(--texto-secundario);
+}
+
+.text-gray-500 {
+    color: #64748B;
+}
+
+/* Espaçamentos e divisórias */
+.border-gray-100 {
+    border-color: #F1F5F9;
+}
+
+/* Animação suave de entrada */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.max-w-7xl > * {
+    animation: aparecer 0.35s ease both;
+}
+
+/* Responsividade: tablets */
+@media (max-width: 768px) {
+    body {
+        padding: 16px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .text-4xl {
+        font-size: 30px;
+    }
+
+    .grid.grid-cols-1.md\:grid-cols-3 {
+        gap: 16px;
+    }
+
+    table {
+        min-width: 650px;
+    }
+
+    th, td {
+        padding: 12px;
+    }
+}
+
+/* Responsividade: celulares */
+@media (max-width: 480px) {
+    body {
+        padding: 12px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .text-4xl {
+        font-size: 28px;
+    }
+
+    button.bg-\[\#004A8F\] {
+        width: 100%;
+    }
+
+    select {
+        width: 100%;
+    }
+
+    .rounded-xl {
+        border-radius: 11px;
+    }
+}
+
+/* Acessibilidade: reduzir animações */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 } 
 
