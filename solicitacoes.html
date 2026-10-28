@@ -1,78 +1,196 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Controle de Atendimento - Solicitações</title>
-  <!-- Aponta para o teu ficheiro CSS exclusivo para não afetar as outras páginas -->
-  <link rel="stylesheet" href="css/Solicitações.css"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitações | Atende+</title>
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/app-pages.css">
+    <script src="js/tema-compartilhado.js" defer></script>
+    <script src="js/solicitacoes.js" defer></script>
 </head>
-<body class="solicitacoes-body">
+<body>
+    <aside class="sidebar">
+        <a class="brand" href="menu.html">
+            <span class="brand-icon">A+</span>
+            <span>Atende<span class="brand-plus">+</span></span>
+        </a>
 
-  <header class="solicitacoes-header">
-    <h1>Controle de Atendimento Interno</h1>
-    <nav class="solicitacoes-nav">
-         <a href="menu.html" class="selecionado">Início</a>
-             <a href="dashboard-atendimento-unificado.html">dashboard</a>
-            <a href="#">solicitações</a>
-            <a href="suporte.html">suporte</a>
-             <a href="#" id="btnSair">Sair</a>
-    </nav>
-  </header>
+        <p class="sidebar-label">MENU PRINCIPAL</p>
 
-  <main class="solicitacoes-container">
-    <!-- SEÇÃO 1: FORMULÁRIO DE NOVA SOLICITAÇÃO (Item 4) -->
-    <section class="solicitacoes-card">
-      <h2>Nova Solicitação</h2>
-      <form id="formSolicitacao">
-        <div class="solicitacoes-campo">
-          <label for="titulo">Título *</label>
-          <input type="text" id="titulo" required placeholder="Ex: Manutenção no Computador">
+        <nav class="side-nav" aria-label="Menu principal">
+            <a href="menu.html" class="nav-item"><span class="nav-icon">⌂</span><span>Início</span></a>
+            <a href="dashboard-atendimento-unificado.html" class="nav-item"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+            <a href="solicitacoes.html" class="nav-item active" aria-current="page"><span class="nav-icon">☷</span><span>Solicitações</span></a>
+            <a href="suporte.html" class="nav-item"><span class="nav-icon">ⓘ</span><span>Suporte</span></a>
+            <a href="configuracoes.html" class="nav-item"><span class="nav-icon">⚙</span><span>Configurações</span></a>
+            <a href="faq.html" class="nav-item"><span class="nav-icon">?</span><span>FAQ / Ajuda</span></a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="help-box">
+                <div class="help-symbol">?</div>
+                <strong>Precisa de ajuda?</strong>
+                <p>Encontre orientações ou registre um problema.</p>
+                <a href="suporte.html">Acessar suporte →</a>
+            </div>
+
+            <button type="button" id="btnSair" class="logout-button">
+                <span class="nav-icon">↪</span><span>Sair do sistema</span>
+            </button>
         </div>
+    </aside>
 
-        <div class="solicitacoes-campo">
-          <label for="descricao">Descrição *</label>
-          <textarea id="descricao" required placeholder="Detalhe a sua solicitação..."></textarea>
+    <main class="main-content">
+        <header class="topbar">
+            <div class="breadcrumb">
+                <span>Atende+</span>
+                <span class="breadcrumb-separator">/</span>
+                <strong>Solicitações</strong>
+            </div>
+
+            <div class="topbar-right">
+                <div class="system-status"><span class="online-dot"></span>Controle de chamados</div>
+                <div class="user-profile">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <div class="user-info">
+                        <strong id="nomeUsuario">Usuário</strong>
+                        <span id="emailUsuario">Atendimento interno</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="app-content">
+            <section class="app-heading">
+                <div>
+                    <span class="eyebrow">GERENCIAMENTO DE ATENDIMENTO</span>
+                    <h1>Solicitações</h1>
+                    <p>Registre chamados, acompanhe seus status e mantenha os atendimentos organizados.</p>
+                </div>
+                <a href="#novaSolicitacao" class="app-button">＋ Nova solicitação</a>
+            </section>
+
+            <section class="app-grid request-stats" aria-label="Resumo das solicitações">
+                <article class="app-card">
+                    <span class="app-stat-label">Total registrado</span>
+                    <strong id="statTotal" class="app-stat-number">0</strong>
+                    <p class="app-muted">Chamados salvos no navegador</p>
+                </article>
+                <article class="app-card">
+                    <span class="app-stat-label">Abertas / pendentes</span>
+                    <strong id="statAbertas" class="app-stat-number">0</strong>
+                    <p class="app-muted">Aguardando atendimento</p>
+                </article>
+                <article class="app-card">
+                    <span class="app-stat-label">Resolvidas</span>
+                    <strong id="statResolvidas" class="app-stat-number">0</strong>
+                    <p class="app-muted">Chamados concluídos</p>
+                </article>
+            </section>
+
+            <section class="app-card" id="novaSolicitacao">
+                <div class="app-card-heading">
+                    <div>
+                        <h2>Nova solicitação</h2>
+                        <p>Os campos com * são obrigatórios. Chamados enviados pelo Suporte também aparecem abaixo.</p>
+                    </div>
+                </div>
+
+                <form class="app-form" id="formSolicitacao">
+                    <div class="app-form-grid">
+                        <div class="app-field">
+                            <label for="solicitante">Nome do solicitante *</label>
+                            <input id="solicitante" name="solicitante" maxlength="100"
+                                   autocomplete="name" placeholder="Digite seu nome" required>
+                        </div>
+                        <div class="app-field">
+                            <label for="setor">Setor / unidade</label>
+                            <input id="setor" name="setor" maxlength="80"
+                                   placeholder="Ex.: Tecnologia da Informação">
+                        </div>
+                    </div>
+
+                    <div class="app-form-grid">
+                        <div class="app-field">
+                            <label for="titulo">Título *</label>
+                            <input id="titulo" name="titulo" maxlength="140"
+                                   placeholder="Ex.: Manutenção no computador" required>
+                        </div>
+                        <div class="app-field">
+                            <label for="data">Data *</label>
+                            <input id="data" name="data" type="date" required>
+                        </div>
+                    </div>
+
+                    <div class="app-field">
+                        <label for="descricao">Descrição *</label>
+                        <textarea id="descricao" name="descricao" minlength="5" maxlength="3000"
+                                  placeholder="Descreva a solicitação e os detalhes relevantes..." required></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="app-button" type="submit">Registrar solicitação →</button>
+                        <button class="app-button secondary" type="reset">Limpar formulário</button>
+                    </div>
+                    <p id="mensagemSolicitacao" class="app-message" aria-live="polite"></p>
+                </form>
+            </section>
+
+            <section class="app-card">
+                <div class="app-card-heading">
+                    <div>
+                        <h2>Solicitações cadastradas</h2>
+                        <p>Atualize o status ou remova um registro local.</p>
+                    </div>
+                    <span class="app-muted" id="contadorSolicitacoes">0 registros</span>
+                </div>
+
+                <div class="app-filter">
+                    <div class="app-field">
+                        <label for="buscaSolicitacao">Pesquisar</label>
+                        <input type="search" id="buscaSolicitacao" placeholder="Protocolo, título ou solicitante...">
+                    </div>
+                    <div class="app-field">
+                        <label for="filtroSolicitacao">Status</label>
+                        <select id="filtroSolicitacao">
+                            <option value="">Todos os status</option>
+                            <option value="aberta">Aberta / Pendente</option>
+                            <option value="andamento">Em atendimento</option>
+                            <option value="resolvida">Resolvida</option>
+                            <option value="cancelada">Cancelada</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="app-table-wrap">
+                    <table class="app-table">
+                        <thead>
+                            <tr>
+                                <th>Protocolo</th>
+                                <th>Título</th>
+                                <th>Solicitante</th>
+                                <th>Data</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaCorpo">
+                            <tr><td colspan="6" class="empty-state">Carregando solicitações...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p id="avisoArmazenamento" class="app-muted" style="margin-top:12px">
+                    Os dados são guardados localmente neste navegador.
+                </p>
+            </section>
+
+            <footer class="page-footer">
+                <span>Atende+ · Projeto SENAI © 2026</span>
+                <span>Gestão de solicitações</span>
+            </footer>
         </div>
-
-        <div class="solicitacoes-campo">
-          <label for="data">Data *</label>
-          <input type="date" id="data" required>
-        </div>
-
-        <button type="submit" class="btn-solicitacao">Enviar</button>
-      </form>
-    </section>
-
-    <!-- SEÇÃO 2: LISTA DE SOLICITAÇÕES (Item 5) -->
-    <section class="solicitacoes-card">
-      <h2>Solicitações Cadastradas</h2>
-      <table class="tabela-solicitacoes">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Título</th>
-            <th>Status</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody id="tabelaCorpo">
-          <!-- Os itens adicionados pelo formulário aparecerão aqui -->
-        </tbody>
-      </table>
-    </section>
-  </main>
-
-  <!-- Importa o script JavaScript que controla a lógica -->
-  <script>
-  document.getElementById("btnSair").addEventListener("click", function (event) {
-    event.preventDefault();
-
-    localStorage.removeItem("usuarioLogado");
-    sessionStorage.removeItem("usuarioLogado");
-
-    window.location.href = "login.html";
-  });
-</script>
+    </main>
 </body>
 </html>

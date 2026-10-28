@@ -1,134 +1,223 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard e Atendimento | Atende+</title>
-<style>
-:root{--blue:#1769AA;--blue-dark:#1769AA;--blue-light:#eaf3ff;--ink:#162334;--muted:#64748b;--border:#e2e8f0;--page:#f4f7fb;--white:#fff;--open:#a21caf;--progress:#b45309;--done:#0f766e;--cancel:#be123c}
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;background:var(--page);color:var(--ink);line-height:1.45}a{color:inherit;text-decoration:none}button,input,select{font:inherit}
-.topbar{background:var(--blue-dark);color:#fff;min-height:70px;padding:15px clamp(16px,4vw,48px);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}.brand{font-weight:800;font-size:25px;letter-spacing:-.4px}.brand span{color:#64d2ff}.nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap}.nav a{font-size:14px;font-weight:700;color:#e7f1ff}.nav a:hover,.nav a:focus{color:#64d2ff}
-.container{width:min(1200px,100% - 32px);margin:30px auto 0}.heading{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:20px}.eyebrow{font-size:12px;color:#2563eb;font-weight:700;margin-bottom:4px}.heading h1{font-size:clamp(25px,3vw,32px);line-height:1.2;color:#111827;margin-bottom:7px}.subtitle{font-size:14px;color:var(--muted)}.primary-btn{border:0;border-radius:9px;background:var(--blue);color:white;padding:12px 16px;font-weight:700;cursor:pointer;white-space:nowrap}.primary-btn:hover{background:#00376a}
-.notice{border:1px solid #dbe3ed;background:#eef2f7;color:#64748b;border-radius:10px;padding:12px 14px;font-size:12px;margin-bottom:20px}.notice strong{display:inline-block;background:white;border:1px solid var(--border);color:#475569;padding:2px 7px;border-radius:5px;margin-right:8px;letter-spacing:.04em}
-.filters{display:grid;grid-template-columns:minmax(220px,2fr) minmax(210px,1fr);gap:14px;background:white;border:1px solid var(--border);border-radius:13px;padding:17px;margin-bottom:20px;box-shadow:0 2px 6px #0f172a06}.field label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#64748b;font-weight:800;margin-bottom:7px}.field input,.field select{width:100%;min-height:43px;background:#f8fafc;border:1px solid #cbd5e1;border-radius:9px;padding:10px 12px;color:#334155;outline:none}.field input:focus,.field select:focus{border-color:#3b82f6;box-shadow:0 0 0 3px #3b82f620;background:#fff}
-.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-bottom:20px}.card{background:#fff;border:1px solid var(--border);border-radius:13px;box-shadow:0 3px 12px #0f172a08}.kpi{padding:22px;border-top:4px solid var(--accent)}.kpi-label{display:flex;align-items:center;gap:8px;color:#475569;font-weight:700;font-size:14px}.dot{width:9px;height:9px;border-radius:50%;background:var(--accent)}.kpi-line{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-top:9px}.kpi-number{font-size:38px;line-height:1;font-weight:800;color:#0f172a}.kpi-pct{font-size:12px;color:#94a3b8}.kpi-note{font-size:12px;color:#94a3b8;margin-top:8px}
-.analytics{display:grid;grid-template-columns:minmax(0,2fr) minmax(260px,1fr);gap:20px;margin-bottom:22px}.chart-card,.legend-card{padding:22px}.section-title{font-size:18px;color:#111827;margin-bottom:5px}.section-caption{font-size:12px;color:#94a3b8;margin-bottom:22px}.bar-row{display:grid;grid-template-columns:120px minmax(40px,1fr) 32px;gap:12px;align-items:center;font-size:13px;margin:17px 0}.bar-track{height:13px;background:#eef2f7;border-radius:999px;overflow:hidden}.bar-fill{height:100%;width:0;border-radius:999px;transition:width .2s}.bar-number{font-weight:700;text-align:right;color:#334155}.legend-item{padding:13px 0;border-bottom:1px solid #f1f5f9}.legend-item:last-of-type{border-bottom:0}.legend-heading{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:13px;font-weight:700;margin-bottom:4px}.legend-item p{font-size:12px;color:#94a3b8}.pending{border-top:1px solid #e2e8f0;margin-top:13px;padding-top:16px}.pending strong{display:block;font-size:16px;color:#111827}.pending span{display:block;font-size:12px;color:#94a3b8;margin-top:3px}
-.list-card{overflow:hidden;margin-bottom:30px}.list-header{padding:19px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #e2e8f0;background:#fff}.list-header h2{font-size:18px;color:#111827;margin-bottom:4px}.list-header p{font-size:12px;color:#94a3b8}.counter{display:inline-block;background:#eff6ff;color:#1d4ed8;border:1px solid #dbeafe;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:700;white-space:nowrap}.request-list{list-style:none}.request{padding:20px 22px;display:flex;justify-content:space-between;align-items:center;gap:18px;border-bottom:1px solid #f1f5f9}.request:last-child{border-bottom:0}.request:hover{background:#f8fafc}.request-main{min-width:0;display:flex;flex-direction:column;gap:5px}.request-id-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.request-id{font-family:monospace;font-size:12px;font-weight:700;color:#64748b;background:#f1f5f9;padding:3px 6px;border-radius:4px}.request-name{font-size:15px;color:#1e293b}.request-desc{font-size:14px;color:#475569;overflow-wrap:anywhere}.request-meta{font-size:12px;color:#94a3b8}.badge{font-size:12px;font-weight:700;border:1px solid;border-radius:999px;padding:6px 10px;white-space:nowrap;align-self:center}.status-aberto{color:#1d4ed8;background:#eff6ff;border-color:#dbeafe}.status-atendimento{color:#b45309;background:#fffbeb;border-color:#fef3c7}.status-resolvido{color:#047857;background:#ecfdf5;border-color:#d1fae5}.status-cancelado{color:#be123c;background:#fff1f2;border-color:#ffe4e6}.empty-state{padding:40px 20px;text-align:center;font-size:14px;color:#94a3b8}.footer{text-align:center;padding:0 16px 26px;color:#94a3b8;font-size:12px}
-@media(max-width:780px){.heading{align-items:flex-start;flex-direction:column}.analytics{grid-template-columns:1fr}.kpis{gap:12px}.kpi{padding:18px}.topbar{align-items:flex-start;flex-direction:column}.nav{gap:13px}}
-@media(max-width:580px){.filters{grid-template-columns:1fr}.kpis{grid-template-columns:1fr}.request{flex-direction:column;align-items:flex-start}.badge{align-self:flex-start}.list-header{align-items:flex-start;flex-direction:column}.bar-row{grid-template-columns:95px minmax(35px,1fr) 24px;gap:8px}.container{width:calc(100% - 24px);margin-top:20px}.brand{font-size:23px}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#111c35">
+    <title>Dashboard | Atende+</title>
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/app-pages.css">
+    <script src="js/tema-compartilhado.js" defer></script>
+    <script src="js/dashboard.js" defer></script>
 </head>
 <body>
-<header class="topbar">
-  <a class="brand" href="menu.html" aria-label="Atende+ início">Atende<span>+</span></a>
-  <nav class="nav" aria-label="Navegação principal">
-       <a href="menu.html" class="selecionado">inicio</a>
-             <a href="dashboard-atendimento-unificado.html">dashboard</a>
-            <a href="solicitacoes.html">solicitações</a>
-            <a href="suporte.html">suporte</a>
-             <a href="#" id="btnSair">Sair</a>
-  </nav>
-</header>
-<main class="container" id="dashboard">
-  <section class="heading">
-    <div><p class="eyebrow">Início &gt; Dashboard</p><h1>Dashboard de solicitações</h1><p class="subtitle">Acompanhe a distribuição e a situação das solicitações em um só lugar.</p></div>
-    <button type="button" class="primary-btn" id="btnVerAtendimentos">Ver atendimentos ↓</button>
-  </section>
-  <div class="notice"><strong>DADOS DE DEMONSTRAÇÃO</strong> Estes registros são exemplos fictícios para ilustrar o funcionamento da página.</div>
+    <aside class="sidebar">
+        <a class="brand" href="menu.html">
+            <span class="brand-icon">A+</span>
+            <span>Atende<span class="brand-plus">+</span></span>
+        </a>
 
-  <section class="filters" id="filtros" aria-label="Filtros de solicitações">
-    <div class="field"><label for="search-input">Palavra-chave</label><input type="search" id="search-input" placeholder="Buscar por descrição, solicitante ou protocolo..."></div>
-    <div class="field"><label for="status-filter">Status da solicitação</label><select id="status-filter"><option value="">Todos os status</option><option value="Aberto">Aberto</option><option value="Em Atendimento">Em Atendimento</option><option value="Resolvido">Resolvido</option><option value="Cancelado">Cancelado</option></select></div>
-  </section>
+        <p class="sidebar-label">MENU PRINCIPAL</p>
 
-  <section class="kpis" aria-label="Indicadores das solicitações">
-    <article class="card kpi" style="--accent:#D946EF"><div class="kpi-label"><span class="dot"></span>Solicitações em aberto</div><div class="kpi-line"><span class="kpi-number" id="kpi-aberto">0</span><span class="kpi-pct" id="pct-aberto">0% do total</span></div><p class="kpi-note">Aguardando análise inicial</p></article>
-    <article class="card kpi" style="--accent:#EAB308"><div class="kpi-label"><span class="dot"></span>Solicitações em andamento</div><div class="kpi-line"><span class="kpi-number" id="kpi-atendimento">0</span><span class="kpi-pct" id="pct-atendimento">0% do total</span></div><p class="kpi-note">Em análise ou execução</p></article>
-    <article class="card kpi" style="--accent:#14B8A6"><div class="kpi-label"><span class="dot"></span>Solicitações atendidas</div><div class="kpi-line"><span class="kpi-number" id="kpi-resolvido">0</span><span class="kpi-pct" id="pct-resolvido">0% do total</span></div><p class="kpi-note">Atendimento concluído</p></article>
-  </section>
+        <nav class="side-nav" aria-label="Menu principal">
+            <a href="menu.html" class="nav-item">
+                <span class="nav-icon">⌂</span><span>Início</span>
+            </a>
+            <a href="dashboard-atendimento-unificado.html" class="nav-item active" aria-current="page">
+                <span class="nav-icon">▦</span><span>Dashboard</span>
+            </a>
+            <a href="solicitacoes.html" class="nav-item">
+                <span class="nav-icon">☷</span><span>Solicitações</span>
+            </a>
+            <a href="suporte.html" class="nav-item">
+                <span class="nav-icon">ⓘ</span><span>Suporte</span>
+            </a>
+            <a href="configuracoes.html" class="nav-item">
+                <span class="nav-icon">⚙</span><span>Configurações</span>
+            </a>
+            <a href="faq.html" class="nav-item">
+                <span class="nav-icon">?</span><span>FAQ / Ajuda</span>
+            </a>
+        </nav>
 
-  <section class="analytics">
-    <article class="card chart-card"><h2 class="section-title">Distribuição por status</h2><p class="section-caption">As barras mostram a quantidade de solicitações por status nos resultados atuais.</p>
-      <div class="bar-row"><span>Em aberto</span><div class="bar-track"><div class="bar-fill" id="bar-aberto" style="background:#D946EF"></div></div><span class="bar-number" id="count-aberto">0</span></div>
-      <div class="bar-row"><span>Em andamento</span><div class="bar-track"><div class="bar-fill" id="bar-atendimento" style="background:#EAB308"></div></div><span class="bar-number" id="count-atendimento">0</span></div>
-      <div class="bar-row"><span>Atendidas</span><div class="bar-track"><div class="bar-fill" id="bar-resolvido" style="background:#14B8A6"></div></div><span class="bar-number" id="count-resolvido">0</span></div>
-      <div class="bar-row"><span>Canceladas</span><div class="bar-track"><div class="bar-fill" id="bar-cancelado" style="background:#F43F5E"></div></div><span class="bar-number" id="count-cancelado">0</span></div>
-      <p class="section-caption" id="chart-note" style="margin:18px 0 0">Indicadores calculados a partir da lista de atendimentos.</p>
-    </article>
-    <aside class="card legend-card"><h2 class="section-title">Entenda os status</h2>
-      <div class="legend-item"><div class="legend-heading"><span>🟣 Em aberto</span><span>Registrada</span></div><p>Registradas e aguardando o início da análise.</p></div>
-      <div class="legend-item"><div class="legend-heading"><span>🟡 Em atendimento</span><span>Em execução</span></div><p>Já estão sendo analisadas ou executadas.</p></div>
-      <div class="legend-item"><div class="legend-heading"><span>🟢 Resolvido</span><span>Concluída</span></div><p>Concluídas com o atendimento registrado.</p></div>
-      <div class="legend-item"><div class="legend-heading"><span>🔴 Cancelado</span><span>Encerrada</span></div><p>Solicitação cancelada e encerrada.</p></div>
-      <div class="pending"><strong id="pending-count">0 solicitações pendentes</strong><span>Em aberto + em atendimento, conforme os filtros.</span></div>
+        <div class="sidebar-bottom">
+            <div class="help-box">
+                <div class="help-symbol">?</div>
+                <strong>Precisa de ajuda?</strong>
+                <p>Acesse a central de suporte.</p>
+                <a href="suporte.html">Acessar suporte →</a>
+            </div>
+
+            <button type="button" id="btnSair" class="logout-button">
+                <span class="nav-icon">↪</span><span>Sair do sistema</span>
+            </button>
+        </div>
     </aside>
-  </section>
 
-  <section class="card list-card" id="atendimentos">
-    <div class="list-header"><div><h2>Controle de Atendimento Interno</h2><p>Solicitações registradas · Use a busca e o status para filtrar a lista.</p></div><span id="counter" class="counter">0 encontrados</span></div>
-    <ul id="solicitacoes-list" class="request-list" aria-live="polite"></ul>
-  </section>
-</main>
-<footer class="footer">Atende+ · Controle de Atendimento Interno</footer>
-<script>
-// Os dados ficam centralizados aqui; a lista, os indicadores e o gráfico usam o mesmo conjunto.
-const solicitacoes = [
-  { id:"CH-101", solicitante:"Carlos Henrique", descricao:"Acesso ao repositório Git travado", status:"Aberto", data:"07/10/2026", unidade:"Tecnologia" },
-  { id:"CH-102", solicitante:"Ana Paula", descricao:"Configurar variáveis de ambiente do servidor externo", status:"Em Atendimento", data:"07/10/2026", unidade:"Infraestrutura" },
-  { id:"CH-103", solicitante:"Bruno Mendes", descricao:"Erro 500 ao salvar formulário de atendimento interno", status:"Resolvido", data:"06/10/2026", unidade:"Sistemas" },
-  { id:"CH-104", solicitante:"Mariana Costa", descricao:"Instalação de dependências do Tailwind CSS na máquina local", status:"Aberto", data:"05/10/2026", unidade:"Tecnologia" },
-  { id:"CH-105", solicitante:"Diego Lima", descricao:"Homologar deploy da branch principal no ambiente de teste", status:"Cancelado", data:"04/10/2026", unidade:"Desenvolvimento" }
-];
-const statusClasses = {"Aberto":"status-aberto","Em Atendimento":"status-atendimento","Resolvido":"status-resolvido","Cancelado":"status-cancelado"};
-const statusKeys = [{status:"Aberto",key:"aberto"},{status:"Em Atendimento",key:"atendimento"},{status:"Resolvido",key:"resolvido"},{status:"Cancelado",key:"cancelado"}];
-const searchInput = document.getElementById("search-input");
-const statusFilter = document.getElementById("status-filter");
-const list = document.getElementById("solicitacoes-list");
-const counter = document.getElementById("counter");
-function atualizarDashboard(resultado) {
-  const total = resultado.length;
-  const counts = {};
-  statusKeys.forEach(({status,key}) => {
-    counts[key] = resultado.filter(item => item.status === status).length;
-    const n = counts[key];
-    const percentage = total ? Math.round(n / total * 100) : 0;
-    document.getElementById("bar-" + key).style.width = percentage + "%";
-    document.getElementById("count-" + key).textContent = n;
-    if (key !== "cancelado") {
-      document.getElementById("kpi-" + key).textContent = n;
-      document.getElementById("pct-" + key).textContent = percentage + "% do total filtrado";
-    }
-  });
-  document.getElementById("pending-count").textContent = (counts.aberto + counts.atendimento) + " solicitações pendentes";
-  document.getElementById("chart-note").textContent = total + (total === 1 ? " solicitação encontrada." : " solicitações encontradas.");
-}
-function renderizarFiltros() {
-  const termo = searchInput.value.trim().toLocaleLowerCase("pt-BR");
-  const status = statusFilter.value;
-  const resultado = solicitacoes.filter(item => {
-    const searchable = [item.id,item.solicitante,item.descricao,item.status,item.data,item.unidade].join(" ").toLocaleLowerCase("pt-BR");
-    return searchable.includes(termo) && (!status || item.status === status);
-  });
-  counter.textContent = resultado.length + (resultado.length === 1 ? " encontrado" : " encontrados");
-  atualizarDashboard(resultado);
-  if (!resultado.length) {
-    list.innerHTML = '<li class="empty-state">Nenhuma solicitação corresponde aos filtros aplicados.</li>';
-    return;
-  }
-  list.innerHTML = resultado.map(item => `
-    <li class="request">
-      <div class="request-main">
-        <div class="request-id-line"><span class="request-id">${item.id}</span><h3 class="request-name">${item.solicitante}</h3></div>
-        <p class="request-desc">${item.descricao}</p>
-        <p class="request-meta">Unidade: ${item.unidade} · Registrado em: ${item.data}</p>
-      </div>
-      <span class="badge ${statusClasses[item.status]}">${item.status}</span>
-    </li>`).join("");
-}
-searchInput.addEventListener("input", renderizarFiltros);
-statusFilter.addEventListener("change", renderizarFiltros);
-document.getElementById("btnVerAtendimentos").addEventListener("click", () => document.getElementById("atendimentos").scrollIntoView({behavior:"smooth"}));
-renderizarFiltros();
-</script>
+    <main class="main-content">
+        <header class="topbar">
+            <div class="breadcrumb">
+                <span>Atende+</span>
+                <span class="breadcrumb-separator">/</span>
+                <strong>Dashboard</strong>
+            </div>
+
+            <div class="topbar-right">
+                <div class="system-status">
+                    <span class="online-dot"></span>
+                    Sistema disponível
+                </div>
+
+                <div class="user-profile">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <div class="user-info">
+                        <strong id="nomeUsuario">Usuário</strong>
+                        <span id="emailUsuario">Atendimento interno</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="app-content">
+            <section class="app-heading">
+                <div>
+                    <span class="eyebrow">INDICADORES DE ATENDIMENTO</span>
+                    <h1>Dashboard de solicitações</h1>
+                    <p>Acompanhe os chamados registrados em Solicitações e Suporte.</p>
+                </div>
+                <a class="app-button" href="solicitacoes.html">＋ Nova solicitação</a>
+            </section>
+
+            <section class="app-grid dashboard-stats" aria-label="Indicadores">
+                <article class="app-card">
+                    <span class="app-stat-label">Total de solicitações</span>
+                    <strong id="totalSolicitacoes" class="app-stat-number">0</strong>
+                    <p class="app-muted">Todos os registros locais</p>
+                </article>
+
+                <article class="app-card">
+                    <span class="app-stat-label">Abertas / pendentes</span>
+                    <strong id="totalAbertas" class="app-stat-number">0</strong>
+                    <p class="app-muted">Aguardando atendimento</p>
+                </article>
+
+                <article class="app-card">
+                    <span class="app-stat-label">Em atendimento</span>
+                    <strong id="totalAndamento" class="app-stat-number">0</strong>
+                    <p class="app-muted">Em análise ou execução</p>
+                </article>
+
+                <article class="app-card">
+                    <span class="app-stat-label">Resolvidas</span>
+                    <strong id="totalResolvidas" class="app-stat-number">0</strong>
+                    <p class="app-muted">Atendimento concluído</p>
+                </article>
+            </section>
+
+            <section class="app-grid dashboard-summary">
+                <article class="app-card">
+                    <div class="app-card-heading">
+                        <div>
+                            <h2>Distribuição por status</h2>
+                            <p class="app-muted">Resumo dos registros salvos no navegador.</p>
+                        </div>
+                    </div>
+
+                    <div class="app-chart-row">
+                        <span>Abertas</span>
+                        <div class="app-track"><div class="app-fill" id="barraAberta"></div></div>
+                        <strong id="qtdAberta">0</strong>
+                    </div>
+                    <div class="app-chart-row">
+                        <span>Em atendimento</span>
+                        <div class="app-track"><div class="app-fill" id="barraAndamento"></div></div>
+                        <strong id="qtdAndamento">0</strong>
+                    </div>
+                    <div class="app-chart-row">
+                        <span>Resolvidas</span>
+                        <div class="app-track"><div class="app-fill" id="barraResolvida"></div></div>
+                        <strong id="qtdResolvida">0</strong>
+                    </div>
+                    <div class="app-chart-row">
+                        <span>Canceladas</span>
+                        <div class="app-track"><div class="app-fill" id="barraCancelada"></div></div>
+                        <strong id="qtdCancelada">0</strong>
+                    </div>
+
+                    <p id="notaDashboard" class="app-muted">Nenhuma solicitação registrada.</p>
+                </article>
+
+                <article class="app-card">
+                    <h2>Resumo de conclusão</h2>
+                    <p class="app-muted" style="margin:7px 0 18px">
+                        Percentual de chamados resolvidos.
+                    </p>
+
+                    <strong id="taxaConclusao" class="app-stat-number">0%</strong>
+                    <div class="app-track" style="margin:14px 0">
+                        <div class="app-fill" id="barraConclusao"></div>
+                    </div>
+
+                    <p id="textoConclusao" class="app-muted">Nenhuma solicitação registrada.</p>
+
+                    <div class="app-quicklinks">
+                        <a class="app-button secondary" href="solicitacoes.html">Gerenciar solicitações →</a>
+                        <a class="app-button secondary" href="suporte.html">Abrir suporte →</a>
+                    </div>
+                </article>
+            </section>
+
+            <section class="app-card">
+                <div class="app-card-heading">
+                    <div>
+                        <h2>Solicitações registradas</h2>
+                        <p>Pesquise por protocolo, título, solicitante ou status.</p>
+                    </div>
+                    <span id="contadorResultados" class="app-muted">0 registros</span>
+                </div>
+
+                <div class="app-filter">
+                    <div class="app-field">
+                        <label for="buscaDashboard">Pesquisar</label>
+                        <input id="buscaDashboard" type="search" placeholder="Digite uma palavra-chave...">
+                    </div>
+
+                    <div class="app-field">
+                        <label for="filtroStatus">Filtrar por status</label>
+                        <select id="filtroStatus">
+                            <option value="">Todos os status</option>
+                            <option value="aberta">Aberta / Pendente</option>
+                            <option value="andamento">Em atendimento</option>
+                            <option value="resolvida">Resolvida</option>
+                            <option value="cancelada">Cancelada</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="app-table-wrap">
+                    <table class="app-table">
+                        <thead>
+                            <tr>
+                                <th>Protocolo</th>
+                                <th>Título</th>
+                                <th>Solicitante</th>
+                                <th>Data</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaDashboard">
+                            <tr><td colspan="5" class="empty-state">Carregando...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <footer class="page-footer">
+                <span>Atende+ · Projeto SENAI © 2026</span>
+                <span>Indicadores locais de atendimento</span>
+            </footer>
+        </div>
+    </main>
 </body>
 </html>

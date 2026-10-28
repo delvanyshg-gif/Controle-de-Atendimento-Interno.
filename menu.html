@@ -4,14 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#14213d">
-
-    <title>Atende+ | Central de Atendimento</title>
-
+    <meta name="theme-color" content="#111c35">
+    <title>Início | Atende+</title>
     <link rel="stylesheet" href="css/menu.css">
     <script src="js/menu.js" defer></script>
 </head>
-
 <body>
     <aside class="sidebar">
         <a class="brand" href="menu.html">
@@ -19,27 +16,26 @@
             <span>Atende<span class="brand-plus">+</span></span>
         </a>
 
-        <div class="sidebar-label">MENU PRINCIPAL</div>
+        <p class="sidebar-label">MENU PRINCIPAL</p>
 
         <nav class="side-nav" aria-label="Menu principal">
             <a href="menu.html" class="nav-item active">
-                <span class="nav-icon">⌂</span>
-                <span>Início</span>
+                <span class="nav-icon">⌂</span><span>Início</span>
             </a>
-
             <a href="dashboard-atendimento-unificado.html" class="nav-item">
-                <span class="nav-icon">▦</span>
-                <span>Dashboard</span>
+                <span class="nav-icon">▦</span><span>Dashboard</span>
             </a>
-
             <a href="solicitacoes.html" class="nav-item">
-                <span class="nav-icon">☷</span>
-                <span>Solicitações</span>
+                <span class="nav-icon">☷</span><span>Solicitações</span>
             </a>
-
             <a href="suporte.html" class="nav-item">
-                <span class="nav-icon">ⓘ</span>
-                <span>Suporte</span>
+                <span class="nav-icon">ⓘ</span><span>Suporte</span>
+            </a>
+            <a href="configuracoes.html" class="nav-item">
+                <span class="nav-icon">⚙</span><span>Configurações</span>
+            </a>
+            <a href="faq.html" class="nav-item">
+                <span class="nav-icon">?</span><span>FAQ / Ajuda</span>
             </a>
         </nav>
 
@@ -47,13 +43,13 @@
             <div class="help-box">
                 <div class="help-symbol">?</div>
                 <strong>Precisa de ajuda?</strong>
-                <p>Acesse nossa central de suporte.</p>
+                <p>Acesse a central de suporte para registrar dúvidas e problemas.</p>
                 <a href="suporte.html">Acessar suporte →</a>
             </div>
 
             <button type="button" id="btnSair" class="logout-button">
                 <span class="nav-icon">↪</span>
-                Sair do sistema
+                <span>Sair do sistema</span>
             </button>
         </div>
     </aside>
@@ -69,14 +65,14 @@
             <div class="topbar-right">
                 <div class="system-status">
                     <span class="online-dot"></span>
-                    Sistema operacional
+                    <span>Sistema disponível</span>
                 </div>
 
                 <div class="user-profile">
-                    <div class="user-avatar">U</div>
+                    <div class="user-avatar" id="userAvatar">U</div>
                     <div class="user-info">
                         <strong id="nomeUsuario">Usuário</strong>
-                        <span>Atendimento interno</span>
+                        <span id="emailUsuario">Atendimento interno</span>
                     </div>
                 </div>
             </div>
@@ -88,29 +84,29 @@
                     <span class="eyebrow">CENTRAL DE ATENDIMENTO</span>
                     <h1>Visão geral</h1>
                     <p>
-                        Acompanhe as solicitações, monitore os atendimentos
-                        e organize suas atividades em um só lugar.
+                        Acompanhe solicitações, monitore os atendimentos
+                        e organize as atividades em um só lugar.
                     </p>
                 </div>
 
                 <a class="primary-button" href="solicitacoes.html">
-                    <span>＋</span> Consultar solicitações
+                    ＋ Consultar solicitações
                 </a>
             </section>
 
-            <section class="stats-grid" aria-label="Indicadores de atendimento">
+            <section class="stats-grid">
                 <article class="stat-card">
                     <div class="stat-top">
                         <span class="stat-label">Total de solicitações</span>
                         <span class="stat-icon icon-blue">☷</span>
                     </div>
                     <strong class="stat-number" id="totalSolicitacoes">0</strong>
-                    <span class="stat-description">Solicitações registradas</span>
+                    <span class="stat-description">Registros encontrados</span>
                 </article>
 
                 <article class="stat-card">
                     <div class="stat-top">
-                        <span class="stat-label">Pendentes</span>
+                        <span class="stat-label">Pendentes / abertas</span>
                         <span class="stat-icon icon-orange">◷</span>
                     </div>
                     <strong class="stat-number" id="totalPendentes">0</strong>
@@ -137,11 +133,11 @@
             </section>
 
             <section class="content-grid">
-                <article class="panel activity-panel">
+                <article class="panel">
                     <div class="panel-heading">
                         <div>
                             <h2>Solicitações recentes</h2>
-                            <p>Acompanhe as últimas atividades do sistema.</p>
+                            <p>Os cinco registros mais recentes.</p>
                         </div>
                         <a href="solicitacoes.html" class="text-link">Ver todas →</a>
                     </div>
@@ -150,9 +146,9 @@
                         <table>
                             <thead>
                                 <tr>
+                                    <th>Protocolo</th>
                                     <th>Solicitação</th>
-                                    <th>Responsável</th>
-                                    <th>Prioridade</th>
+                                    <th>Solicitante</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -167,33 +163,41 @@
                         </table>
                     </div>
 
-                    <div id="avisoDados" class="data-note">
-                        Os dados exibidos dependem das solicitações disponíveis.
-                    </div>
+                    <p id="avisoDados" class="data-note" aria-live="polite">
+                        Os indicadores serão atualizados com os registros salvos.
+                    </p>
                 </article>
 
-                <article class="panel summary-panel">
+                <article class="panel">
                     <div class="panel-heading">
                         <div>
                             <h2>Resumo do atendimento</h2>
-                            <p>Distribuição das solicitações.</p>
+                            <p>Distribuição por status.</p>
                         </div>
                     </div>
 
                     <div class="completion-summary">
-                        <div>
+                        <div class="completion-heading">
                             <span class="summary-label">Taxa de conclusão</span>
                             <strong id="taxaConclusao">0%</strong>
                         </div>
-                        <div class="progress-track">
+
+                        <div class="progress-track"
+                             id="progressoConclusao"
+                             role="progressbar"
+                             aria-label="Taxa de conclusão"
+                             aria-valuemin="0"
+                             aria-valuemax="100"
+                             aria-valuenow="0">
                             <div id="barraConclusao" class="progress-value"></div>
                         </div>
+
                         <p id="textoConclusao">Nenhuma solicitação registrada.</p>
                     </div>
 
                     <div class="distribution">
                         <div class="distribution-row">
-                            <span><i class="legend-dot dot-orange"></i>Pendentes</span>
+                            <span><i class="legend-dot dot-orange"></i>Pendentes / abertas</span>
                             <strong id="resumoPendentes">0</strong>
                         </div>
                         <div class="distribution-row">
@@ -206,7 +210,8 @@
                         </div>
                     </div>
 
-                    <a href="dashboard-atendimento-unificado.html" class="secondary-button">
+                    <a href="dashboard-atendimento-unificado.html"
+                       class="secondary-button">
                         Abrir dashboard completo →
                     </a>
                 </article>
@@ -223,7 +228,7 @@
                         <span class="shortcut-icon icon-blue">＋</span>
                         <span class="shortcut-copy">
                             <strong>Solicitações</strong>
-                            <small>Consultar e acompanhar chamados</small>
+                            <small>Registrar e acompanhar chamados</small>
                         </span>
                         <span class="shortcut-arrow">→</span>
                     </a>
@@ -242,6 +247,24 @@
                         <span class="shortcut-copy">
                             <strong>Central de suporte</strong>
                             <small>Encontrar ajuda e orientações</small>
+                        </span>
+                        <span class="shortcut-arrow">→</span>
+                    </a>
+
+                    <a href="configuracoes.html" class="shortcut-card">
+                        <span class="shortcut-icon icon-blue">⚙</span>
+                        <span class="shortcut-copy">
+                            <strong>Configurações</strong>
+                            <small>Personalizar sua experiência</small>
+                        </span>
+                        <span class="shortcut-arrow">→</span>
+                    </a>
+
+                    <a href="faq.html" class="shortcut-card">
+                        <span class="shortcut-icon icon-green">?</span>
+                        <span class="shortcut-copy">
+                            <strong>FAQ / Ajuda</strong>
+                            <small>Consultar perguntas frequentes</small>
                         </span>
                         <span class="shortcut-arrow">→</span>
                     </a>

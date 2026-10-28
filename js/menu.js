@@ -1,90 +1,77 @@
 
-document.addEventListener("DOMContentLoaded", () => {
+(() => {
+    "use strict";
+
     const CHAVE_SOLICITACOES = "atende_solicitacoes";
+    const CHAVE_SESSAO = "atende_session";
+    const CHAVE_PREFERENCIAS = "atende_preferencias";
 
-    // Dados demonstrativos usados apenas quando não existem
-    // solicitações salvas na chave esperada.
-    const dadosDemonstrativos = [
-        {
-            id: "SOL-001",
-            titulo: "Problema de acesso",
-            responsavel: "Ana Silva",
-            prioridade: "Alta",
-            status: "Pendente"
-        },
-        {
-            id: "SOL-002",
-            titulo: "Atualização cadastral",
-            responsavel: "Carlos Souza",
-            prioridade: "Média",
-            status: "Em andamento"
-        },
-        {
-            id: "SOL-003",
-            titulo: "Erro no relatório",
-            responsavel: "Maria Oliveira",
-            prioridade: "Alta",
-            status: "Em andamento"
-        },
-        {
-            id: "SOL-004",
-            titulo: "Solicitação de acesso",
-            responsavel: "João Santos",
-            prioridade: "Baixa",
-            status: "Concluída"
-        },
-        {
-            id: "SOL-005",
-            titulo: "Dúvida sobre o sistema",
-            responsavel: "Pedro Lima",
-            prioridade: "Média",
-            status: "Pendente"
-        }
-    ];
+    const porId = (id) => document.getElementById(id);
 
-    const elemento = (id) => document.getElementById(id);
-
-    function lerSolicitacoes() {
+    function lerJSON(chave, padrao) {
         try {
-            const dadosSalvos = localStorage.getItem(CHAVE_SOLICITACOES);
-
-            if (dadosSalvos !== null) {
-                const dados = JSON.parse(dadosSalvos);
-
-                if (Array.isArray(dados)) {
-                    return {
-                        dados,
-                        demonstracao: false
-                    };
-                }
-            }
+            const valor = localStorage.getItem(chave);
+            return valor === null ? padrao : JSON.parse(valor);
         } catch (erro) {
-            console.error("Erro ao ler solicitações:", erro);
+            console.error(`Não foi possível ler ${chave}:`, erro);
+            return padrao;
         }
-
-        return {
-            dados: dadosDemonstrativos,
-            demonstracao: true
-        };
     }
 
-    function normalizarStatus(status) {
-        const valor = String(status || "")
+    function lerSolicitacoes() {
+        const dados = lerJSON(CHAVE_SOLICITACOES, []);
+        return Array.isArray(dados) ? dados : [];
+    }
+
+    function lerSessao() {
+        const sessao = lerJSON(CHAVE_SESSAO, null);
+
+        if (sessao && typeof sessao === "object") {
+            return sessao;
+        }
+
+        const legado = lerJSON("usuarioLogado", null);
+
+        if (legado && typeof legado === "object") return legado;
+        if (typeof legado === "string" && legado.trim()) {
+            return { name: legado.trim() };
+        }
+
+        return null;
+    }
+
+    function lerPreferencias() {
+        const preferencias = lerJSON(CHAVE_PREFERENCIAS, {});
+        return preferencias && typeof preferencias === "object"
+            ? preferencias
+            : {};
+    }
+
+    function normalizarTexto(valor) {
+        return String(valor ?? "")
             .trim()
-            .toLowerCase()
+            .toLocaleLowerCase("pt-BR")
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function categorizarStatus(status) {
+        const valor = normalizarTexto(status);
+
+        if (valor.includes("cancel")) return "cancelada";
 
         if (
+            valor.includes("resolvid") ||
             valor.includes("conclu") ||
             valor.includes("finaliz") ||
-            valor.includes("resolvid")
+            valor.includes("complet")
         ) {
             return "concluida";
         }
 
         if (
             valor.includes("andamento") ||
+            valor.includes("atendimento") ||
             valor.includes("processo") ||
             valor.includes("em curso")
         ) {
@@ -94,208 +81,216 @@ document.addEventListener("DOMContentLoaded", () => {
         return "pendente";
     }
 
-    function obterTitulo(item) {
-        return item.titulo ||
-            item.assunto ||
-            item.nome ||
-            item.descricao ||
-            "Solicitação sem título";
+    function criarNo(tag, texto, classe) {
+        const no = document.createElement(tag);
+        no.textContent = texto;
+
+        if (classe) no.className = classe;
+
+        return no;
     }
 
-    function obterResponsavel(item) {
-        return item.responsavel ||
-            item.solicitante ||
-            item.nomeSolicitante ||
-            item.usuario ||
-            "Não informado";
-    }
+    function atualizarTabela(solicitacoes) {
+        const corpo = porId("listaRecentes");
+        corpo.replaceChildren();
 
-    function obterPrioridade(item) {
-        const prioridade = String(
-            item.prioridade || item.priority || "Média"
-        ).trim().toLowerCase();
+        if (solicitacoes.length === 0) {
+            const linha = document.createElement("tr");
+            const celula = criarNo(
+                "td",
+                "Nenhuma solicitação registrada. Abra uma solicitação para visualizar os dados aqui.",
+                "empty-state"
+            );
 
-        if (prioridade.includes("alta") || prioridade === "high") {
-            return "Alta";
+            celula.colSpan = 4;
+            linha.appendChild(celula);
+            corpo.appendChild(linha);
+            return;
         }
 
-        if (prioridade.includes("baixa") || prioridade === "low") {
-            return "Baixa";
-        }
+        solicitacoes.slice(-5).reverse().forEach((item, indice) => {
+            const indiceOriginal = solicitacoes.length - 1 - indice;
+            const linha = document.createElement("tr");
 
-        return "Média";
-    }
+            const protocolo = String(
+                item.id ??
+                item.protocolo ??
+                `SOL-${String(indiceOriginal + 1).padStart(3, "0")}`
+            );
 
-    function criarElemento(tag, texto, classe) {
-        const node = document.createElement(tag);
-        node.textContent = texto;
+            const titulo = String(
+                item.titulo ||
+                item.assunto ||
+                item.title ||
+                item.nome ||
+                item.descricao ||
+                "Solicitação sem título"
+            ).split("\n")[0].trim();
 
-        if (classe) {
-            node.className = classe;
-        }
+            const solicitante = String(
+                item.solicitante ||
+                item.responsavel ||
+                item.nomeSolicitante ||
+                item.usuario ||
+                item.userEmail ||
+                item.email ||
+                "Não informado"
+            );
 
-        return node;
+            const status = String(item.status || "Aberto");
+            const categoria = categorizarStatus(status);
+
+            const classes = {
+                pendente: "status-pendente",
+                andamento: "status-andamento",
+                concluida: "status-concluida",
+                cancelada: "status-cancelada"
+            };
+
+            const celulaStatus = document.createElement("td");
+            celulaStatus.appendChild(
+                criarNo(
+                    "span",
+                    status,
+                    `status-badge ${classes[categoria]}`
+                )
+            );
+
+            linha.append(
+                criarNo("td", protocolo),
+                criarNo("td", titulo || "Solicitação sem título"),
+                criarNo("td", solicitante),
+                celulaStatus
+            );
+
+            corpo.appendChild(linha);
+        });
     }
 
     function atualizarIndicadores(solicitacoes) {
         const total = solicitacoes.length;
 
         const pendentes = solicitacoes.filter(
-            item => normalizarStatus(item.status) === "pendente"
+            item => categorizarStatus(item.status) === "pendente"
         ).length;
 
         const andamento = solicitacoes.filter(
-            item => normalizarStatus(item.status) === "andamento"
+            item => categorizarStatus(item.status) === "andamento"
         ).length;
 
         const concluidas = solicitacoes.filter(
-            item => normalizarStatus(item.status) === "concluida"
+            item => categorizarStatus(item.status) === "concluida"
         ).length;
 
-        elemento("totalSolicitacoes").textContent = total;
-        elemento("totalPendentes").textContent = pendentes;
-        elemento("totalAndamento").textContent = andamento;
-        elemento("totalConcluidas").textContent = concluidas;
-
-        elemento("resumoPendentes").textContent = pendentes;
-        elemento("resumoAndamento").textContent = andamento;
-        elemento("resumoConcluidas").textContent = concluidas;
-
-        const taxa = total > 0
+        const taxa = total
             ? Math.round((concluidas / total) * 100)
             : 0;
 
-        elemento("taxaConclusao").textContent = `${taxa}%`;
-        elemento("barraConclusao").style.width = `${taxa}%`;
+        porId("totalSolicitacoes").textContent = total;
+        porId("totalPendentes").textContent = pendentes;
+        porId("totalAndamento").textContent = andamento;
+        porId("totalConcluidas").textContent = concluidas;
 
-        elemento("textoConclusao").textContent = total > 0
+        porId("resumoPendentes").textContent = pendentes;
+        porId("resumoAndamento").textContent = andamento;
+        porId("resumoConcluidas").textContent = concluidas;
+
+        porId("taxaConclusao").textContent = `${taxa}%`;
+        porId("barraConclusao").style.width = `${taxa}%`;
+        porId("progressoConclusao").setAttribute(
+            "aria-valuenow",
+            String(taxa)
+        );
+
+        porId("textoConclusao").textContent = total
             ? `${concluidas} de ${total} solicitações concluídas.`
             : "Nenhuma solicitação registrada.";
+
+        porId("avisoDados").textContent = total
+            ? "Indicadores calculados com os registros salvos em atende_solicitacoes."
+            : "Ainda não há solicitações salvas. Os indicadores permanecem zerados.";
     }
 
-    function criarBadgeStatus(status) {
-        const tipo = normalizarStatus(status);
+    function aplicarPreferencias() {
+        const preferencias = lerPreferencias();
 
-        const classes = {
-            pendente: "status-pendente",
-            andamento: "status-andamento",
-            concluida: "status-concluida"
-        };
+        document.body.classList.toggle(
+            "theme-dark",
+            preferencias.tema === "escuro"
+        );
 
-        const nomes = {
-            pendente: "Pendente",
-            andamento: "Em andamento",
-            concluida: "Concluída"
-        };
-
-        return criarElemento(
-            "span",
-            nomes[tipo],
-            `status-badge ${classes[tipo]}`
+        document.body.classList.toggle(
+            "compact-mode",
+            preferencias.modoCompacto === true
         );
     }
 
-    function criarBadgePrioridade(prioridade) {
-        const classes = {
-            Alta: "priority-alta",
-            Média: "priority-media",
-            Baixa: "priority-baixa"
-        };
+    function atualizarNomeUsuario() {
+        const sessao = lerSessao();
+        const preferencias = lerPreferencias();
 
-        return criarElemento(
-            "span",
-            prioridade,
-            `priority-badge ${classes[prioridade]}`
-        );
-    }
+        const nomeSessao = String(
+            sessao?.name || sessao?.nome || sessao?.nameUser || "Usuário"
+        ).trim();
 
-    function atualizarTabela(solicitacoes) {
-        const tabela = elemento("listaRecentes");
-        tabela.replaceChildren();
+        const nomePreferido = String(
+            preferencias.nomeExibicao || ""
+        ).trim();
 
-        if (solicitacoes.length === 0) {
-            const linha = document.createElement("tr");
-            const celula = criarElemento(
-                "td",
-                "Nenhuma solicitação encontrada.",
-                "empty-state"
-            );
+        const nome = nomePreferido || nomeSessao || "Usuário";
+        const email = String(sessao?.email || "Atendimento interno").trim();
+        const avatar = nome.charAt(0).toLocaleUpperCase("pt-BR") || "U";
 
-            celula.colSpan = 4;
-            linha.appendChild(celula);
-            tabela.appendChild(linha);
-            return;
-        }
-
-        solicitacoes.slice(-5).reverse().forEach(item => {
-            const linha = document.createElement("tr");
-
-            const titulo = criarElemento("td", obterTitulo(item));
-            const responsavel = criarElemento(
-                "td",
-                obterResponsavel(item)
-            );
-
-            const prioridade = document.createElement("td");
-            prioridade.appendChild(
-                criarBadgePrioridade(obterPrioridade(item))
-            );
-
-            const status = document.createElement("td");
-            status.appendChild(criarBadgeStatus(item.status));
-
-            linha.append(titulo, responsavel, prioridade, status);
-            tabela.appendChild(linha);
-        });
+        porId("nomeUsuario").textContent = nome;
+        porId("emailUsuario").textContent = email;
+        porId("userAvatar").textContent = avatar;
     }
 
     function atualizarMenu() {
-        const resultado = lerSolicitacoes();
+        aplicarPreferencias();
 
-        atualizarIndicadores(resultado.dados);
-        atualizarTabela(resultado.dados);
+        const solicitacoes = lerSolicitacoes();
 
-        elemento("avisoDados").textContent = resultado.demonstracao
-            ? "Exibindo dados demonstrativos. Conecte a página de Solicitações à chave atende_solicitacoes para compartilhar os registros reais."
-            : "Indicadores calculados com base nos registros encontrados no navegador.";
+        atualizarIndicadores(solicitacoes);
+        atualizarTabela(solicitacoes);
     }
 
-    // Personalização opcional: utiliza um nome já salvo no navegador.
-    const nomeSalvo =
-        localStorage.getItem("nomeUsuario") ||
-        localStorage.getItem("usuarioNome");
-
-    if (nomeSalvo) {
-        elemento("nomeUsuario").textContent = nomeSalvo;
-        elemento("userAvatar");
-
-        const avatar = document.querySelector(".user-avatar");
-
-        if (avatar) {
-            avatar.textContent = nomeSalvo.trim().charAt(0).toUpperCase();
-        }
-    }
-
-    // O botão volta para o login, mas não substitui uma autenticação real.
-    elemento("btnSair").addEventListener("click", () => {
+    function sairDoSistema() {
         const confirmar = window.confirm(
             "Deseja sair do sistema e voltar para a tela de login?"
         );
 
-        if (confirmar) {
-            window.location.href = "login.html";
-        }
-    });
+        if (!confirmar) return;
 
-    atualizarMenu();
+        localStorage.removeItem(CHAVE_SESSAO);
+        localStorage.removeItem("usuarioLogado");
+        sessionStorage.removeItem("usuarioLogado");
 
-    // Atualiza os indicadores se outra página modificar a chave compartilhada.
-    window.addEventListener("storage", (evento) => {
-        if (
-            evento.key === CHAVE_SOLICITACOES ||
-            evento.key === null
-        ) {
-            atualizarMenu();
-        }
-    });
-});
+        window.location.href = "login.html";
+    }
+
+    function inicializar() {
+        atualizarNomeUsuario();
+        atualizarMenu();
+
+        porId("btnSair").addEventListener("click", sairDoSistema);
+
+        window.addEventListener("storage", (evento) => {
+            if (
+                evento.key === CHAVE_SOLICITACOES ||
+                evento.key === CHAVE_SESSAO ||
+                evento.key === CHAVE_PREFERENCIAS ||
+                evento.key === null
+            ) {
+                atualizarNomeUsuario();
+                atualizarMenu();
+            }
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", inicializar);
+    } else {
+        inicializar();
+    }
+})();
