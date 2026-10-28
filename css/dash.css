@@ -1,0 +1,362 @@
+
+/* =====================================================
+   DASHBOARD ATENDE+
+   Estilo complementar ao css/style.css
+===================================================== */
+
+.dashboard-page {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #F3F6FA;
+    color: #24364B;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+/* =====================================================
+   CABEÇALHO
+===================================================== */
+
+.dashboard-page header.topo {
+    width: 100%;
+    min-height: 64px;
+    margin: 0;
+    padding: 0 36px;
+    background-color: #164F7D;
+    color: #FFFFFF;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    box-sizing: border-box;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.dashboard-page header.topo h1 {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    color: #FFFFFF;
+    font-size: 27px;
+    font-weight: 700;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+.dashboard-page header.topo nav.menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 26px;
+    flex-wrap: nowrap;
+    width: auto;
+}
+
+.dashboard-page header.topo nav.menu a {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    color: #FFFFFF;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    opacity: 1;
+    transition: color 0.2s ease;
+}
+
+.dashboard-page header.topo nav.menu a.selecionado,
+.dashboard-page header.topo nav.menu a:hover {
+    color: #58C7FF;
+}
+
+/* =====================================================
+   CONTEÚDO PRINCIPAL
+===================================================== */
+
+.dashboard-page > main.max-w-7xl {
+    width: calc(100% - 64px);
+    max-width: 1100px;
+    margin: 36px auto;
+    padding: 0;
+}
+
+/* Espaçamento vertical entre seções */
+.dashboard-page main.space-y-6 > * + * {
+    margin-top: 24px;
+}
+
+/* Título e descrição */
+.dashboard-page main h1,
+.dashboard-page main h2 {
+    color: #24364B;
+    letter-spacing: -0.4px;
+}
+
+.dashboard-page main h1 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.dashboard-page main h2 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.dashboard-page main p {
+    line-height: 1.6;
+}
+
+/* =====================================================
+   BOTÕES
+===================================================== */
+
+.dashboard-page main button {
+    cursor: pointer;
+    font-family: inherit;
+    transition: background-color 0.2s ease,
+                transform 0.2s ease;
+}
+
+.dashboard-page main button.bg-\[\#004A8F\] {
+    background-color: #1769AA;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 3px 8px rgba(22, 79, 125, 0.12);
+}
+
+.dashboard-page main button.bg-\[\#004A8F\]:hover {
+    background-color: #164F7D;
+    transform: translateY(-1px);
+}
+
+/* =====================================================
+   AVISO DE DEMONSTRAÇÃO
+===================================================== */
+
+.dashboard-page main .bg-gray-100\/80 {
+    background-color: #EAF0F6;
+    border: 1px solid #DFE7F0;
+    border-radius: 9px;
+    padding: 13px 16px;
+    color: #64748B;
+}
+
+/* =====================================================
+   FILTROS
+===================================================== */
+
+.dashboard-page main select {
+    min-height: 40px;
+    padding: 9px 12px;
+    background-color: #FFFFFF;
+    color: #40536A;
+    border: 1px solid #D6DEE8;
+    border-radius: 7px;
+    font-size: 13px;
+    outline: none;
+}
+
+.dashboard-page main select:focus {
+    border-color: #1769AA;
+    box-shadow: 0 0 0 3px rgba(23, 105, 170, 0.12);
+}
+
+/* =====================================================
+   CARTÕES DE INDICADORES
+===================================================== */
+
+.dashboard-page main .grid.grid-cols-1.md\:grid-cols-3 > div {
+    min-width: 0;
+    padding: 24px;
+    background-color: #FFFFFF;
+    border: 1px solid #E8EDF3;
+    border-top: 4px solid #1769AA;
+    border-radius: 12px;
+    box-shadow: 0 7px 22px rgba(31, 55, 80, 0.045);
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.dashboard-page main .grid.grid-cols-1.md\:grid-cols-3 > div:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(31, 55, 80, 0.09);
+}
+
+/* Indicadores numéricos */
+.dashboard-page main .text-4xl {
+    color: #1769AA;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* =====================================================
+   GRÁFICO E LEGENDA
+===================================================== */
+
+.dashboard-page main .grid.grid-cols-1.lg\:grid-cols-3 {
+    background-color: #FFFFFF;
+    border: 1px solid #E8EDF3;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 7px 22px rgba(31, 55, 80, 0.04);
+}
+
+.dashboard-page main #statusChart {
+    max-width: 100%;
+}
+
+/* =====================================================
+   TABELA DE SOLICITAÇÕES
+===================================================== */
+
+.dashboard-page main .bg-white.rounded-xl.overflow-hidden {
+    background-color: #FFFFFF;
+    border: 1px solid #E8EDF3;
+    border-radius: 12px;
+    box-shadow: 0 7px 22px rgba(31, 55, 80, 0.04);
+}
+
+.dashboard-page main table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.dashboard-page main thead {
+    background-color: #F2F5F9;
+}
+
+.dashboard-page main thead th {
+    padding: 15px 16px;
+    color: #53677D;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.dashboard-page main tbody td {
+    padding: 15px 16px;
+    color: #45576B;
+    font-size: 13px;
+    border-bottom: 1px solid #EDF1F5;
+}
+
+.dashboard-page main tbody tr:hover {
+    background-color: #F7FAFD;
+}
+
+.dashboard-page main .overflow-x-auto {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+/* Links dentro do conteúdo */
+.dashboard-page main a {
+    color: #1769AA;
+    text-decoration: none;
+}
+
+.dashboard-page main a:hover {
+    color: #164F7D;
+    text-decoration: underline;
+}
+
+/* =====================================================
+   RESPONSIVIDADE
+===================================================== */
+
+@media (max-width: 900px) {
+    .dashboard-page header.topo {
+        padding: 16px 24px;
+    }
+
+    .dashboard-page header.topo nav.menu {
+        gap: 16px;
+    }
+
+    .dashboard-page > main.max-w-7xl {
+        width: calc(100% - 40px);
+        margin: 28px auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-page header.topo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .dashboard-page header.topo nav.menu {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 14px 20px;
+    }
+
+    .dashboard-page > main.max-w-7xl {
+        width: calc(100% - 32px);
+        margin: 24px auto;
+    }
+
+    .dashboard-page main .grid.grid-cols-1.md\:grid-cols-3 > div {
+        padding: 20px;
+    }
+
+    .dashboard-page main .grid.grid-cols-1.lg\:grid-cols-3 {
+        padding: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-page header.topo {
+        padding: 16px;
+    }
+
+    .dashboard-page header.topo h1 {
+        font-size: 24px;
+    }
+
+    .dashboard-page header.topo nav.menu {
+        gap: 12px 16px;
+    }
+
+    .dashboard-page header.topo nav.menu a {
+        font-size: 13px;
+    }
+
+    .dashboard-page > main.max-w-7xl {
+        width: calc(100% - 24px);
+        margin: 20px auto;
+    }
+
+    .dashboard-page main button.bg-\[\#004A8F\] {
+        max-width: 100%;
+    }
+
+    .dashboard-page main select {
+        max-width: 100%;
+    }
+
+    .dashboard-page main table {
+        min-width: 650px;
+    }
+}
