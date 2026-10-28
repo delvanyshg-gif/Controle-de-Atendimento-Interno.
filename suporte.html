@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suporte | Central de Atendimento</title>
+    <link rel="stylesheet" href="css/suporte.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <a class="brand" href="menu.html">
+            <span class="brand-icon">CA</span>
+            <span>Central<span class="brand-light">Atende</span></span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="dashboard-atendimento-unificado.html">dashboard</a>
+            <a href="solicitacoes.html">Solicitações</a>
+            <a class="active" href="suporte.html">Suporte</a>
+        </nav>
+
+        <a class="topbar-action" href="#abrir-chamado">
+            Abrir chamado ↗
+        </a>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <span class="eyebrow">
+                    <span class="status-dot"></span>
+                    CENTRAL DE AJUDA
+                </span>
+
+                <h1>Como podemos<br>
+                    <span>ajudar você?</span>
+                </h1>
+
+                <p>
+                    Encontre respostas, reporte um problema ou entre
+                    em contato com nossa equipe de suporte.
+                </p>
+
+                <a class="primary-button" href="#abrir-chamado">
+                    Falar com o suporte →
+                </a>
+            </div>
+
+            <div class="hero-art">
+                <div class="art-circle"></div>
+
+                <div class="support-card">
+                    <div class="support-card-top">
+                        <span class="mini-icon">✦</span>
+                        <span class="online-pill">Equipe disponível</span>
+                    </div>
+
+                    <div class="avatar-row">
+                        <span class="avatar avatar-one">A</span>
+                        <span class="avatar avatar-two">M</span>
+                        <span class="avatar avatar-three">R</span>
+                        <span class="avatar-more">+</span>
+                    </div>
+
+                    <h3>Estamos aqui para ajudar.</h3>
+                    <p>Conte com nossa equipe para resolver suas dúvidas.</p>
+
+                    <div class="fake-message">
+                        <span class="message-dot"></span>
+                        Atendimento pronto para começar
+                    </div>
+                </div>
+
+                <div class="floating-bubble bubble-one">✓</div>
+                <div class="floating-bubble bubble-two">?</div>
+            </div>
+        </section>
+
+        <section class="quick-help section-wrap">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow muted">SUPORTE RÁPIDO</span>
+                    <h2>O que você precisa?</h2>
+                </div>
+                <p>Escolha uma opção para encontrar a ajuda ideal.</p>
+            </div>
+
+            <div class="help-grid">
+                <a class="help-card" href="#faq">
+                    <span class="help-icon icon-blue">▤</span>
+                    <span class="card-arrow">↗</span>
+                    <h3>Dúvidas frequentes</h3>
+                    <p>Confira respostas para as perguntas mais comuns.</p>
+                    <span class="card-link">Ver respostas →</span>
+                </a>
+
+                <a class="help-card" href="#abrir-chamado">
+                    <span class="help-icon icon-purple">⚙</span>
+                    <span class="card-arrow">↗</span>
+                    <h3>Problemas técnicos</h3>
+                    <p>Relate erros, falhas ou dificuldades na plataforma.</p>
+                    <span class="card-link">Relatar problema →</span>
+                </a>
+
+                <a class="help-card" href="#contato">
+                    <span class="help-icon icon-green">✉</span>
+                    <span class="card-arrow">↗</span>
+                    <h3>Fale conosco</h3>
+                    <p>Precisa de ajuda personalizada? Entre em contato.</p>
+                    <span class="card-link">Ver contato →</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="ticket-section" id="abrir-chamado">
+            <div class="ticket-copy">
+                <span class="eyebrow muted">PRECISA DE AJUDA?</span>
+
+                <h2>Abra uma solicitação<br>de suporte.</h2>
+
+                <p>
+                    Descreva o que está acontecendo. Quanto mais detalhes
+                    você informar, mais fácil será entender sua solicitação.
+                </p>
+
+                <div class="ticket-note">
+                    <span class="note-icon">i</span>
+                    <span>
+                        Este formulário ainda precisa ser conectado a um
+                        sistema para enviar chamados de verdade.
+                    </span>
+                </div>
+            </div>
+
+            <form class="support-form" action="#" method="post">
+                <div class="form-title">
+                    <span class="form-title-icon">✦</span>
+                    <div>
+                        <h3>Nova solicitação</h3>
+                        <p>Preencha os campos abaixo</p>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label>
+                        Nome completo
+                        <input
+                            type="text"
+                            name="nome"
+                            placeholder="Como podemos chamar você?"
+                            required
+                        >
+                    </label>
+
+                    <label>
+                        E-mail para contato
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="voce@exemplo.com"
+                            required
+                        >
+                    </label>
+                </div>
+
+                <label>
+                    Assunto
+                    <select name="assunto" required>
+                        <option value="" disabled selected>
+                            Selecione o tipo de solicitação
+                        </option>
+                        <option>Dúvida sobre o sistema</option>
+                        <option>Problema técnico</option>
+                        <option>Acesso ou login</option>
+                        <option>Solicitação de melhoria</option>
+                        <option>Outro assunto</option>
+                    </select>
+                </label>
+
+                <label>
+                    Descreva o problema
+                    <textarea
+                        name="mensagem"
+                        rows="4"
+                        placeholder="Conte para nós o que aconteceu..."
+                        required
+                    ></textarea>
+                </label>
+
+                <div class="form-footer">
+                    <span><span class="required-mark">*</span> Campos obrigatórios</span>
+                    <button type="submit">Enviar solicitação →</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="faq-section section-wrap" id="faq">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow muted">CENTRAL DE CONHECIMENTO</span>
+                    <h2>Dúvidas frequentes</h2>
+                </div>
+                <p>Algumas respostas para ajudar você a começar.</p>
+            </div>
+
+            <div class="faq-list">
+                <details>
+                    <summary>
+                        Como acompanho uma solicitação que já abri?
+                        <span>+</span>
+                    </summary>
+                    <p>
+                        Acesse a página Solicitações pelo menu para consultar
+                        os chamados disponíveis no sistema.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>
+                        O que devo incluir ao relatar um problema?
+                        <span>+</span>
+                    </summary>
+                    <p>
+                        Informe o que estava tentando fazer, o que aconteceu,
+                        a mensagem de erro e os passos para reproduzir o problema.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>
+                        Quanto tempo leva para receber uma resposta?
+                        <span>+</span>
+                    </summary>
+                    <p>
+                        O prazo depende da prioridade e do processo de atendimento
+                        da equipe responsável.
+                    </p>
+                </details>
+            </div>
+        </section>
+
+        <section class="contact-strip section-wrap" id="contato">
+            <div class="contact-symbol">✉</div>
+
+            <div>
+                <h3>Ainda precisa de ajuda?</h3>
+                <p>Abra uma solicitação para que a equipe possa analisar seu caso.</p>
+            </div>
+
+            <a href="#abrir-chamado">Entrar em contato →</a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <a class="brand footer-brand" href="index.html">
+            <span class="brand-icon">CA</span>
+            <span>Central<span class="brand-light">Atende</span></span>
+        </a>
+
+        <p>© 2026 Central Atende. Todos os direitos reservados.</p>
+
+        <a href="suporte.html">Voltar ao início ↑</a>
+    </footer>
+
+</body>
+</html>

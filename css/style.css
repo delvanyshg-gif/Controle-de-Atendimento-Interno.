@@ -59,7 +59,7 @@ a {
 .login-aside {
     width: 45%;
     min-height: 100vh;
-    background: linear-gradient(145deg, #0f4c81, #1769aa);
+    background: linear-gradient(145deg, #1769AA, #1769aa);
     color: white;
     padding: 50px;
     display: flex;
