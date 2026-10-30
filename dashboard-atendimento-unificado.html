@@ -6,11 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#111c35">
     <title>Dashboard | Atende+</title>
+
     <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="css/app-pages.css">
+
     <script src="js/tema-compartilhado.js" defer></script>
+    <script src="js/logout.js" defer></script>
     <script src="js/dashboard.js" defer></script>
 </head>
+
 <body>
     <aside class="sidebar">
         <a class="brand" href="menu.html">
@@ -24,18 +28,23 @@
             <a href="menu.html" class="nav-item">
                 <span class="nav-icon">⌂</span><span>Início</span>
             </a>
+
             <a href="dashboard-atendimento-unificado.html" class="nav-item active" aria-current="page">
                 <span class="nav-icon">▦</span><span>Dashboard</span>
             </a>
+
             <a href="solicitacoes.html" class="nav-item">
                 <span class="nav-icon">☷</span><span>Solicitações</span>
             </a>
+
             <a href="suporte.html" class="nav-item">
                 <span class="nav-icon">ⓘ</span><span>Suporte</span>
             </a>
+
             <a href="configuracoes.html" class="nav-item">
                 <span class="nav-icon">⚙</span><span>Configurações</span>
             </a>
+
             <a href="faq.html" class="nav-item">
                 <span class="nav-icon">?</span><span>FAQ / Ajuda</span>
             </a>
@@ -49,8 +58,14 @@
                 <a href="suporte.html">Acessar suporte →</a>
             </div>
 
-            <button type="button" id="btnSair" class="logout-button">
-                <span class="nav-icon">↪</span><span>Sair do sistema</span>
+            <button type="button" id="btnSairConta" class="logout-button">
+                <span class="nav-icon">↪</span>
+                <span>Sair da conta</span>
+            </button>
+
+            <button type="button" id="btnSairSite" class="logout-button">
+                <span class="nav-icon">×</span>
+                <span>Sair do site</span>
             </button>
         </div>
     </aside>
@@ -86,6 +101,7 @@
                     <h1>Dashboard de solicitações</h1>
                     <p>Acompanhe os chamados registrados em Solicitações e Suporte.</p>
                 </div>
+
                 <a class="app-button" href="solicitacoes.html">＋ Nova solicitação</a>
             </section>
 
@@ -129,16 +145,19 @@
                         <div class="app-track"><div class="app-fill" id="barraAberta"></div></div>
                         <strong id="qtdAberta">0</strong>
                     </div>
+
                     <div class="app-chart-row">
                         <span>Em atendimento</span>
                         <div class="app-track"><div class="app-fill" id="barraAndamento"></div></div>
                         <strong id="qtdAndamento">0</strong>
                     </div>
+
                     <div class="app-chart-row">
                         <span>Resolvidas</span>
                         <div class="app-track"><div class="app-fill" id="barraResolvida"></div></div>
                         <strong id="qtdResolvida">0</strong>
                     </div>
+
                     <div class="app-chart-row">
                         <span>Canceladas</span>
                         <div class="app-track"><div class="app-fill" id="barraCancelada"></div></div>
@@ -155,6 +174,7 @@
                     </p>
 
                     <strong id="taxaConclusao" class="app-stat-number">0%</strong>
+
                     <div class="app-track" style="margin:14px 0">
                         <div class="app-fill" id="barraConclusao"></div>
                     </div>
@@ -174,6 +194,7 @@
                         <h2>Solicitações registradas</h2>
                         <p>Pesquise por protocolo, título, solicitante ou status.</p>
                     </div>
+
                     <span id="contadorResultados" class="app-muted">0 registros</span>
                 </div>
 
@@ -206,8 +227,11 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
+
                         <tbody id="tabelaDashboard">
-                            <tr><td colspan="5" class="empty-state">Carregando...</td></tr>
+                            <tr>
+                                <td colspan="5" class="empty-state">Carregando...</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

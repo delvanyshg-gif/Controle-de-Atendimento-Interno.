@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#111c35">
     <title>Início | Atende+</title>
+
     <link rel="stylesheet" href="css/menu.css">
+
+    <script src="js/logout.js" defer></script>
     <script src="js/menu.js" defer></script>
 </head>
+
 <body>
     <aside class="sidebar">
         <a class="brand" href="menu.html">
@@ -22,18 +26,23 @@
             <a href="menu.html" class="nav-item active">
                 <span class="nav-icon">⌂</span><span>Início</span>
             </a>
+
             <a href="dashboard-atendimento-unificado.html" class="nav-item">
                 <span class="nav-icon">▦</span><span>Dashboard</span>
             </a>
+
             <a href="solicitacoes.html" class="nav-item">
                 <span class="nav-icon">☷</span><span>Solicitações</span>
             </a>
+
             <a href="suporte.html" class="nav-item">
                 <span class="nav-icon">ⓘ</span><span>Suporte</span>
             </a>
+
             <a href="configuracoes.html" class="nav-item">
                 <span class="nav-icon">⚙</span><span>Configurações</span>
             </a>
+
             <a href="faq.html" class="nav-item">
                 <span class="nav-icon">?</span><span>FAQ / Ajuda</span>
             </a>
@@ -47,9 +56,14 @@
                 <a href="suporte.html">Acessar suporte →</a>
             </div>
 
-            <button type="button" id="btnSair" class="logout-button">
+            <button type="button" id="btnSairConta" class="logout-button">
                 <span class="nav-icon">↪</span>
-                <span>Sair do sistema</span>
+                <span>Sair da conta</span>
+            </button>
+
+            <button type="button" id="btnSairSite" class="logout-button">
+                <span class="nav-icon">×</span>
+                <span>Sair do site</span>
             </button>
         </div>
     </aside>
@@ -70,6 +84,7 @@
 
                 <div class="user-profile">
                     <div class="user-avatar" id="userAvatar">U</div>
+
                     <div class="user-info">
                         <strong id="nomeUsuario">Usuário</strong>
                         <span id="emailUsuario">Atendimento interno</span>
@@ -182,13 +197,15 @@
                             <strong id="taxaConclusao">0%</strong>
                         </div>
 
-                        <div class="progress-track"
-                             id="progressoConclusao"
-                             role="progressbar"
-                             aria-label="Taxa de conclusão"
-                             aria-valuemin="0"
-                             aria-valuemax="100"
-                             aria-valuenow="0">
+                        <div
+                            class="progress-track"
+                            id="progressoConclusao"
+                            role="progressbar"
+                            aria-label="Taxa de conclusão"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            aria-valuenow="0">
+
                             <div id="barraConclusao" class="progress-value"></div>
                         </div>
 
@@ -200,18 +217,21 @@
                             <span><i class="legend-dot dot-orange"></i>Pendentes / abertas</span>
                             <strong id="resumoPendentes">0</strong>
                         </div>
+
                         <div class="distribution-row">
                             <span><i class="legend-dot dot-purple"></i>Em andamento</span>
                             <strong id="resumoAndamento">0</strong>
                         </div>
+
                         <div class="distribution-row">
                             <span><i class="legend-dot dot-green"></i>Concluídas</span>
                             <strong id="resumoConcluidas">0</strong>
                         </div>
                     </div>
 
-                    <a href="dashboard-atendimento-unificado.html"
-                       class="secondary-button">
+                    <a
+                        href="dashboard-atendimento-unificado.html"
+                        class="secondary-button">
                         Abrir dashboard completo →
                     </a>
                 </article>

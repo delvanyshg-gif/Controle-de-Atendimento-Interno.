@@ -5,11 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solicitações | Atende+</title>
+
     <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="css/app-pages.css">
+
     <script src="js/tema-compartilhado.js" defer></script>
+    <script src="js/logout.js" defer></script>
     <script src="js/solicitacoes.js" defer></script>
 </head>
+
 <body>
     <aside class="sidebar">
         <a class="brand" href="menu.html">
@@ -20,12 +24,29 @@
         <p class="sidebar-label">MENU PRINCIPAL</p>
 
         <nav class="side-nav" aria-label="Menu principal">
-            <a href="menu.html" class="nav-item"><span class="nav-icon">⌂</span><span>Início</span></a>
-            <a href="dashboard-atendimento-unificado.html" class="nav-item"><span class="nav-icon">▦</span><span>Dashboard</span></a>
-            <a href="solicitacoes.html" class="nav-item active" aria-current="page"><span class="nav-icon">☷</span><span>Solicitações</span></a>
-            <a href="suporte.html" class="nav-item"><span class="nav-icon">ⓘ</span><span>Suporte</span></a>
-            <a href="configuracoes.html" class="nav-item"><span class="nav-icon">⚙</span><span>Configurações</span></a>
-            <a href="faq.html" class="nav-item"><span class="nav-icon">?</span><span>FAQ / Ajuda</span></a>
+            <a href="menu.html" class="nav-item">
+                <span class="nav-icon">⌂</span><span>Início</span>
+            </a>
+
+            <a href="dashboard-atendimento-unificado.html" class="nav-item">
+                <span class="nav-icon">▦</span><span>Dashboard</span>
+            </a>
+
+            <a href="solicitacoes.html" class="nav-item active" aria-current="page">
+                <span class="nav-icon">☷</span><span>Solicitações</span>
+            </a>
+
+            <a href="suporte.html" class="nav-item">
+                <span class="nav-icon">ⓘ</span><span>Suporte</span>
+            </a>
+
+            <a href="configuracoes.html" class="nav-item">
+                <span class="nav-icon">⚙</span><span>Configurações</span>
+            </a>
+
+            <a href="faq.html" class="nav-item">
+                <span class="nav-icon">?</span><span>FAQ / Ajuda</span>
+            </a>
         </nav>
 
         <div class="sidebar-bottom">
@@ -36,8 +57,14 @@
                 <a href="suporte.html">Acessar suporte →</a>
             </div>
 
-            <button type="button" id="btnSair" class="logout-button">
-                <span class="nav-icon">↪</span><span>Sair do sistema</span>
+            <button type="button" id="btnSairConta" class="logout-button">
+                <span class="nav-icon">↪</span>
+                <span>Sair da conta</span>
+            </button>
+
+            <button type="button" id="btnSairSite" class="logout-button">
+                <span class="nav-icon">×</span>
+                <span>Sair do site</span>
             </button>
         </div>
     </aside>
@@ -51,9 +78,14 @@
             </div>
 
             <div class="topbar-right">
-                <div class="system-status"><span class="online-dot"></span>Controle de chamados</div>
+                <div class="system-status">
+                    <span class="online-dot"></span>
+                    Controle de chamados
+                </div>
+
                 <div class="user-profile">
                     <div class="user-avatar" id="userAvatar">U</div>
+
                     <div class="user-info">
                         <strong id="nomeUsuario">Usuário</strong>
                         <span id="emailUsuario">Atendimento interno</span>
@@ -69,7 +101,10 @@
                     <h1>Solicitações</h1>
                     <p>Registre chamados, acompanhe seus status e mantenha os atendimentos organizados.</p>
                 </div>
-                <a href="#novaSolicitacao" class="app-button">＋ Nova solicitação</a>
+
+                <a href="#novaSolicitacao" class="app-button">
+                    ＋ Nova solicitação
+                </a>
             </section>
 
             <section class="app-grid request-stats" aria-label="Resumo das solicitações">
@@ -78,11 +113,13 @@
                     <strong id="statTotal" class="app-stat-number">0</strong>
                     <p class="app-muted">Chamados salvos no navegador</p>
                 </article>
+
                 <article class="app-card">
                     <span class="app-stat-label">Abertas / pendentes</span>
                     <strong id="statAbertas" class="app-stat-number">0</strong>
                     <p class="app-muted">Aguardando atendimento</p>
                 </article>
+
                 <article class="app-card">
                     <span class="app-stat-label">Resolvidas</span>
                     <strong id="statResolvidas" class="app-stat-number">0</strong>
@@ -102,38 +139,67 @@
                     <div class="app-form-grid">
                         <div class="app-field">
                             <label for="solicitante">Nome do solicitante *</label>
-                            <input id="solicitante" name="solicitante" maxlength="100"
-                                   autocomplete="name" placeholder="Digite seu nome" required>
+                            <input
+                                id="solicitante"
+                                name="solicitante"
+                                maxlength="100"
+                                autocomplete="name"
+                                placeholder="Digite seu nome"
+                                required>
                         </div>
+
                         <div class="app-field">
                             <label for="setor">Setor / unidade</label>
-                            <input id="setor" name="setor" maxlength="80"
-                                   placeholder="Ex.: Tecnologia da Informação">
+                            <input
+                                id="setor"
+                                name="setor"
+                                maxlength="80"
+                                placeholder="Ex.: Tecnologia da Informação">
                         </div>
                     </div>
 
                     <div class="app-form-grid">
                         <div class="app-field">
                             <label for="titulo">Título *</label>
-                            <input id="titulo" name="titulo" maxlength="140"
-                                   placeholder="Ex.: Manutenção no computador" required>
+                            <input
+                                id="titulo"
+                                name="titulo"
+                                maxlength="140"
+                                placeholder="Ex.: Manutenção no computador"
+                                required>
                         </div>
+
                         <div class="app-field">
                             <label for="data">Data *</label>
-                            <input id="data" name="data" type="date" required>
+                            <input
+                                id="data"
+                                name="data"
+                                type="date"
+                                required>
                         </div>
                     </div>
 
                     <div class="app-field">
                         <label for="descricao">Descrição *</label>
-                        <textarea id="descricao" name="descricao" minlength="5" maxlength="3000"
-                                  placeholder="Descreva a solicitação e os detalhes relevantes..." required></textarea>
+                        <textarea
+                            id="descricao"
+                            name="descricao"
+                            minlength="5"
+                            maxlength="3000"
+                            placeholder="Descreva a solicitação e os detalhes relevantes..."
+                            required></textarea>
                     </div>
 
                     <div class="form-actions">
-                        <button class="app-button" type="submit">Registrar solicitação →</button>
-                        <button class="app-button secondary" type="reset">Limpar formulário</button>
+                        <button class="app-button" type="submit">
+                            Registrar solicitação →
+                        </button>
+
+                        <button class="app-button secondary" type="reset">
+                            Limpar formulário
+                        </button>
                     </div>
+
                     <p id="mensagemSolicitacao" class="app-message" aria-live="polite"></p>
                 </form>
             </section>
@@ -144,14 +210,19 @@
                         <h2>Solicitações cadastradas</h2>
                         <p>Atualize o status ou remova um registro local.</p>
                     </div>
+
                     <span class="app-muted" id="contadorSolicitacoes">0 registros</span>
                 </div>
 
                 <div class="app-filter">
                     <div class="app-field">
                         <label for="buscaSolicitacao">Pesquisar</label>
-                        <input type="search" id="buscaSolicitacao" placeholder="Protocolo, título ou solicitante...">
+                        <input
+                            type="search"
+                            id="buscaSolicitacao"
+                            placeholder="Protocolo, título ou solicitante...">
                     </div>
+
                     <div class="app-field">
                         <label for="filtroSolicitacao">Status</label>
                         <select id="filtroSolicitacao">
@@ -176,11 +247,17 @@
                                 <th>Ações</th>
                             </tr>
                         </thead>
+
                         <tbody id="tabelaCorpo">
-                            <tr><td colspan="6" class="empty-state">Carregando solicitações...</td></tr>
+                            <tr>
+                                <td colspan="6" class="empty-state">
+                                    Carregando solicitações...
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
+
                 <p id="avisoArmazenamento" class="app-muted" style="margin-top:12px">
                     Os dados são guardados localmente neste navegador.
                 </p>

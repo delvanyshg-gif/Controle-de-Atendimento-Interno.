@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -8,6 +9,9 @@
     <title>Criar conta | Atende+</title>
 
     <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/db.js" defer></script>
+    <script src="js/cadastro.js" defer></script>
 </head>
 
 <body>
@@ -32,7 +36,6 @@
 
             </header>
 
-
             <form id="register-form" class="login-form">
 
                 <div class="field">
@@ -44,12 +47,13 @@
                     <input
                         type="text"
                         id="name"
+                        name="name"
                         placeholder="Seu nome"
+                        autocomplete="name"
                         required
                     >
 
                 </div>
-
 
                 <div class="field">
 
@@ -60,12 +64,13 @@
                     <input
                         type="email"
                         id="email"
+                        name="email"
                         placeholder="voce@empresa.com"
+                        autocomplete="email"
                         required
                     >
 
                 </div>
-
 
                 <div class="field">
 
@@ -76,12 +81,13 @@
                     <input
                         type="password"
                         id="password"
+                        name="password"
                         placeholder="Crie uma senha"
+                        autocomplete="new-password"
                         required
                     >
 
                 </div>
-
 
                 <div class="field">
 
@@ -92,12 +98,13 @@
                     <input
                         type="password"
                         id="confirm-password"
+                        name="confirm-password"
                         placeholder="Digite a senha novamente"
+                        autocomplete="new-password"
                         required
                     >
 
                 </div>
-
 
                 <button
                     type="submit"
@@ -107,14 +114,13 @@
                     <span>→</span>
                 </button>
 
-
                 <p
                     id="register-message"
                     class="form-message"
+                    aria-live="polite"
                 ></p>
 
             </form>
-
 
             <div class="register-area">
 
@@ -123,7 +129,7 @@
                 </p>
 
                 <a
-                    href="menu.html"
+                    href="index.html"
                     class="register-link"
                 >
                     Voltar para o login
@@ -134,10 +140,6 @@
         </div>
 
     </main>
-
-
-    <script src="js/db.js"></script>
-    <script src="js/cadastro.js"></script>
 
 </body>
 

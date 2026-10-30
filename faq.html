@@ -5,9 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ e Ajuda | Atende+</title>
+
     <link rel="stylesheet" href="css/menu.css">
+
+    <script src="js/logout.js" defer></script>
     <script src="js/faq.js" defer></script>
 </head>
+
 <body>
     <aside class="sidebar">
         <a class="brand" href="menu.html">
@@ -18,12 +22,29 @@
         <p class="sidebar-label">MENU PRINCIPAL</p>
 
         <nav class="side-nav">
-            <a href="menu.html" class="nav-item"><span class="nav-icon">⌂</span><span>Início</span></a>
-            <a href="dashboard-atendimento-unificado.html" class="nav-item"><span class="nav-icon">▦</span><span>Dashboard</span></a>
-            <a href="solicitacoes.html" class="nav-item"><span class="nav-icon">☷</span><span>Solicitações</span></a>
-            <a href="suporte.html" class="nav-item"><span class="nav-icon">ⓘ</span><span>Suporte</span></a>
-            <a href="configuracoes.html" class="nav-item"><span class="nav-icon">⚙</span><span>Configurações</span></a>
-            <a href="faq.html" class="nav-item active"><span class="nav-icon">?</span><span>FAQ / Ajuda</span></a>
+            <a href="menu.html" class="nav-item">
+                <span class="nav-icon">⌂</span><span>Início</span>
+            </a>
+
+            <a href="dashboard-atendimento-unificado.html" class="nav-item">
+                <span class="nav-icon">▦</span><span>Dashboard</span>
+            </a>
+
+            <a href="solicitacoes.html" class="nav-item">
+                <span class="nav-icon">☷</span><span>Solicitações</span>
+            </a>
+
+            <a href="suporte.html" class="nav-item">
+                <span class="nav-icon">ⓘ</span><span>Suporte</span>
+            </a>
+
+            <a href="configuracoes.html" class="nav-item">
+                <span class="nav-icon">⚙</span><span>Configurações</span>
+            </a>
+
+            <a href="faq.html" class="nav-item active">
+                <span class="nav-icon">?</span><span>FAQ / Ajuda</span>
+            </a>
         </nav>
 
         <div class="sidebar-bottom">
@@ -34,8 +55,14 @@
                 <a href="suporte.html">Ir para o suporte →</a>
             </div>
 
-            <button type="button" id="btnSair" class="logout-button">
-                <span class="nav-icon">↪</span><span>Sair do sistema</span>
+            <button type="button" id="btnSairConta" class="logout-button">
+                <span class="nav-icon">↪</span>
+                <span>Sair da conta</span>
+            </button>
+
+            <button type="button" id="btnSairSite" class="logout-button">
+                <span class="nav-icon">×</span>
+                <span>Sair do site</span>
             </button>
         </div>
     </aside>
@@ -49,9 +76,14 @@
             </div>
 
             <div class="topbar-right">
-                <div class="system-status"><span class="online-dot"></span>Central de conhecimento</div>
+                <div class="system-status">
+                    <span class="online-dot"></span>
+                    Central de conhecimento
+                </div>
+
                 <div class="user-profile">
                     <div class="user-avatar" id="userAvatar">U</div>
+
                     <div class="user-info">
                         <strong id="nomeUsuario">Usuário</strong>
                         <span id="emailUsuario">Atendimento interno</span>
@@ -78,10 +110,14 @@
                 <div class="faq-tools">
                     <label class="search-field">
                         <span aria-hidden="true">⌕</span>
-                        <input id="buscaFaq" type="search"
-                               placeholder="Ex.: senha, chamado, status..."
-                               aria-label="Pesquisar perguntas frequentes">
+
+                        <input
+                            id="buscaFaq"
+                            type="search"
+                            placeholder="Ex.: senha, chamado, status..."
+                            aria-label="Pesquisar perguntas frequentes">
                     </label>
+
                     <button type="button" id="limparBusca" class="secondary-action">
                         Limpar busca
                     </button>
@@ -98,10 +134,13 @@
 
             <section class="faq-card">
                 <div class="faq-list" id="listaFaq">
+
                     <article class="faq-item" data-categoria="acesso" data-texto="login entrar conta senha acesso cadastro">
                         <button type="button" class="faq-question" aria-expanded="false">
-                            <span>Como faço para entrar no Atende+?</span><span class="plus">＋</span>
+                            <span>Como faço para entrar no Atende+?</span>
+                            <span class="plus">＋</span>
                         </button>
+
                         <div class="faq-answer">
                             Abra a página de login, informe o e-mail e a senha cadastrados e selecione Entrar. Se a conta ainda não existir, use a opção de cadastro disponível na tela.
                         </div>
@@ -109,8 +148,10 @@
 
                     <article class="faq-item" data-categoria="acesso" data-texto="esqueci senha recuperar acesso">
                         <button type="button" class="faq-question" aria-expanded="false">
-                            <span>Esqueci minha senha. Como recupero o acesso?</span><span class="plus">＋</span>
+                            <span>Esqueci minha senha. Como recupero o acesso?</span>
+                            <span class="plus">＋</span>
                         </button>
+
                         <div class="faq-answer">
                             Nesta versão estática, a recuperação de senha ainda precisa ser conectada a um backend. Um fluxo real deve validar a identidade por e-mail e permitir redefinição segura.
                         </div>
@@ -118,8 +159,10 @@
 
                     <article class="faq-item" data-categoria="acesso" data-texto="cadastro criar conta e-mail duplicado">
                         <button type="button" class="faq-question" aria-expanded="false">
-                            <span>O que faço se meu e-mail já estiver cadastrado?</span><span class="plus">＋</span>
+                            <span>O que faço se meu e-mail já estiver cadastrado?</span>
+                            <span class="plus">＋</span>
                         </button>
+
                         <div class="faq-answer">
                             Verifique se já criou uma conta usando esse endereço. Se o problema continuar, procure o responsável pelo sistema ou registre a dificuldade na página Suporte.
                         </div>
@@ -127,8 +170,10 @@
 
                     <article class="faq-item" data-categoria="solicitacoes" data-texto="abrir criar chamado solicitação protocolo">
                         <button type="button" class="faq-question" aria-expanded="false">
-                            <span>Como abro uma solicitação?</span><span class="plus">＋</span>
+                            <span>Como abro uma solicitação?</span>
+                            <span class="plus">＋</span>
                         </button>
+
                         <div class="faq-answer">
                             Acesse Solicitações para preencher o formulário de registro. Na página Suporte também é possível registrar dúvidas e problemas técnicos.
                         </div>
@@ -136,8 +181,10 @@
 
                     <article class="faq-item" data-categoria="solicitacoes" data-texto="acompanhar consultar status pendente andamento resolvido">
                         <button type="button" class="faq-question" aria-expanded="false">
-                            <span>Como acompanho o status de um chamado?</span><span class="plus">＋</span>
+                            <span>Como acompanho o status de um chamado?</span>
+                            <span class="plus">＋</span>
                         </button>
+
                         <div class="faq-answer">
                             Consulte a tabela da página Solicitações. O status pode aparecer como Aberto, Em Atendimento, Resolvido ou outro estado adotado pelo projeto.
                         </div>
@@ -145,8 +192,10 @@
 
                     <article class="faq-item" data-categoria="solicitacoes" data-texto="chamado não aparece lista dados localstorage navegador">
                         <button type="button" class="faq-question" aria-expanded="false">
-                            <span>Por que uma solicitação não aparece na lista?</span><span class="plus">＋</span>
+                            <span>Por que uma solicitação não aparece na lista?</span>
+                            <span class="plus">＋</span>
                         </button>
+
                         <div class="faq-answer">
                             Confira se o registro foi salvo e se as páginas usam a mesma chave do localStorage. Os dados locais ficam vinculados ao mesmo navegador e à mesma origem; não são automaticamente compartilhados entre computadores.
                         </div>
@@ -154,8 +203,10 @@
 
                     <article class="faq-item" data-categoria="suporte" data-texto="problema técnico erro falha suporte relatar">
                         <button type="button" class="faq-question" aria-expanded="false">
-                            <span>O que devo informar ao relatar um problema?</span><span class="plus">＋</span>
+                            <span>O que devo informar ao relatar um problema?</span>
+                            <span class="plus">＋</span>
                         </button>
+
                         <div class="faq-answer">
                             Descreva o que estava tentando fazer, as etapas realizadas, o resultado esperado, o que aconteceu e qualquer mensagem de erro. Evite incluir senhas ou dados sensíveis.
                         </div>
@@ -163,8 +214,10 @@
 
                     <article class="faq-item" data-categoria="suporte" data-texto="prazo resposta atendimento equipe e-mail notificação">
                         <button type="button" class="faq-question" aria-expanded="false">
-                            <span>Receberei uma resposta automática por e-mail?</span><span class="plus">＋</span>
+                            <span>Receberei uma resposta automática por e-mail?</span>
+                            <span class="plus">＋</span>
                         </button>
+
                         <div class="faq-answer">
                             Não nesta versão apenas de HTML, CSS e JavaScript local. Para enviar e-mails ou alertas, será necessária uma integração com servidor ou serviço de mensagens.
                         </div>
@@ -172,8 +225,10 @@
 
                     <article class="faq-item" data-categoria="dados" data-texto="dados localstorage limpar navegador outro computador privacidade">
                         <button type="button" class="faq-question" aria-expanded="false">
-                            <span>Onde ficam guardadas as informações?</span><span class="plus">＋</span>
+                            <span>Onde ficam guardadas as informações?</span>
+                            <span class="plus">＋</span>
                         </button>
+
                         <div class="faq-answer">
                             As informações desta versão ficam no localStorage do navegador. Elas podem não aparecer em outro navegador ou computador, e limpar os dados do site pode apagá-las. Evite usar dados reais sensíveis nesta versão de demonstração.
                         </div>
@@ -181,12 +236,15 @@
 
                     <article class="faq-item" data-categoria="dados" data-texto="configurações tema nome compacto preferências navegador">
                         <button type="button" class="faq-question" aria-expanded="false">
-                            <span>Para que servem as Configurações?</span><span class="plus">＋</span>
+                            <span>Para que servem as Configurações?</span>
+                            <span class="plus">＋</span>
                         </button>
+
                         <div class="faq-answer">
                             A página Configurações permite salvar preferências locais, como nome de exibição, tema visual e modo compacto. Essas preferências não alteram os dados de cadastro da conta.
                         </div>
                     </article>
+
                 </div>
 
                 <p id="semResultadosFaq" class="faq-empty" hidden>
